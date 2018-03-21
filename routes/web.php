@@ -17,4 +17,3 @@ Route::get('/', function () {
 Route::get('/master', function () {
     return view('layout.master');
 });
-
