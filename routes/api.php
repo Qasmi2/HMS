@@ -20,11 +20,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Route define the Registation and login for user 
 
-Route::post('login', 'UsertController@login');
-Route::post('register', 'UsertController@register');
+Route::post('login', 'UserController@login');
+Route::post('register', 'UserController@register');
 
-// Route::group(['middleware' => 'auth:api'], function(){
+Route::group(['middleware' => 'auth:api'], function(){
 	Route::get('get-details', 'UserController@getDetails');
-// });
+});
+
+
+
+//Route of the admin side
+
+Route::group(['middleware' => 'auth:api'], function(){
+
+    Route::get('propertyget', 'propertyController@index');
+    Route::get('propertyget/{id}', 'propertyController@show');
+    Route::post('propertyCreate', 'propertyController@store');
+    Route::put('property/{id}', 'propertyController@update');
+    Route::delete('propertyDelete/{id}', 'propertyController@destroy');
+});
 
 

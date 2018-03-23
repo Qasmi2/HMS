@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
+
 class UserController extends Controller
 {
     public $successStatus = 200;
@@ -40,6 +41,7 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => 'required',
             'c_password' => 'required|same:password',
+            'role' => 'required',
         ]);
 
         if ($validator->fails()) {

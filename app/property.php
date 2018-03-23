@@ -13,7 +13,7 @@ class property extends Model
      * @var array
      */
     protected $fillable = [
-        'proertyType', 'propertyName', 'noOfRoom','streetAddress','sector','Latitude','Longitude','city','user_id',
+        'propertyType', 'propertyName', 'noOfRoom','streetAddress','sector','Latitude','Longitude','city','user_id',
     ];
 
     /**

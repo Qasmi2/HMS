@@ -17,9 +17,9 @@ class CreateRoomsTable extends Migration
             $table->increments('id');
             $table->string('roomType');
             $table->string('NameOfRoom');
-            $table->integer('price');
-            $table->integer('availableRoom');
-            $table->integer('bookedRoom');
+            $table->integer('price')->unsigned();
+            $table->integer('availableRoom')->unsigned();
+            $table->integer('bookedRoom')->unsigned();
             $table->integer('property_id')->unsigned();
             $table->foreign('property_id')->references('id')->on('properties');
             $table->timestamps();
