@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\property;
+use Illuminate\Support\Facades\DB;
+use App\room;
 use Validator;
-class propertyController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +18,19 @@ class propertyController extends Controller
      */
     public function index()
     {
+        
         $user = Auth::user();
         $role = $user->role;
         if($role == 'admin'){
 
-            $property = property::paginate(10);
+            $room = room::paginate(10);
             //return collection of articles as a resource
             // return propertyResource::collection($property);
 
-            return response()->json($property, 201);
+            return response()->json($room, 201);
+        }
+        else{
+            return response()->json(['error'=>'Unauthorised amin'], 401);
         }
     }
 
@@ -48,53 +54,45 @@ class propertyController extends Controller
     {
         $user = Auth::user();
         $userID = $user->id;
+        // $propertyID ['id'] = DB::table('properties')->where('user_id','=',$userID)->value('id');
+        
+       
+
         $role = $user->role;
         if($role == 'admin'){
-            
+
             $validator = Validator::make($request->all(), [
-                'propertyType' => 'required',
-                'propertyName' => 'required',
-                'noOfRoom' => 'required',
-                'streetAddress' => 'required',
-                'sector' => 'required',
-                'city' =>'required',
+                'roomType' => 'required',
+                'NameOfRoom' => 'required',
+                'price' => 'required',
+                'availableRoom' => 'required',
+                'property_id' => 'required',
             ]);
-    
+
             if ($validator->fails()) {
                 return response()->json(['error'=>$validator->errors()], 401);            
             }
 
+            $Room = $request->isMethod('put') ? room::findOrFail 
+            ($request->room_id) : new room;
 
-            $hostal = $request->isMethod('put') ? property::findOrFail 
-            ($request->property_id) : new property;
-           
-            $hostal->id = $request->input('property_id');
-            $hostal->propertyType = $request->input('propertyType');
-            $hostal->propertyName = $request->input('propertyName');
-            $hostal->noOfRoom = $request->input('noOfRoom');
-            $hostal->streetAddress = $request->input('streetAddress');
-            $hostal->sector = $request->input('sector');
-            $hostal->Latitude = $request->input('Latitude');
-            $hostal->Longitude = $request->input('Longitude');
-            $hostal->city = $request->input('city');
-            $hostal->internet = $request->input('internet');
-            $hostal->parking = $request->input('parking');
-            $hostal->mess = $request->input('mess');
-            $hostal->TvCabel = $request->input('TvCabel');
-            $hostal->RoomCleaning = $request->input('RoomCleaning');
-            $hostal->lundary = $request->input('lundary');
-            $hostal->cctvCamear = $request->input('cctvCamear');
+            $Room->roomType = $request->input('roomType');
+            $Room->NameOfRoom = $request->input('NameOfRoom');
+            $Room->price = $request->input('price');
+            $Room->availableRoom = $request->input('availableRoom');
+            // $Room->bookedRoom = $request->input('bookedRoom');
+            $Room->property_id  = $request->input('property_id');
 
-            $hostal->user_id = $userID;
-           if($hostal->save()){
+           if($Room->save()){
     
             // return new propertyResource($hostal);
-               return response()->json($hostal, 201);
+               return response()->json($Room, 201);
             
            }
            else{
             return response()->json(['error'=>'Something wrong Not Save into database'], 401);
         }
+
 
         }
         else{
@@ -110,22 +108,24 @@ class propertyController extends Controller
      */
     public function show($id)
     {
+         
         $user = Auth::user();
-    
         $role = $user->role;
         if($role == 'admin'){
-            if($property = property::findorFail($id)){
+
+            if($room = room::findorFail($id)){
 
                 // return new propertyResource($property);
-                return response()->json($property, 201);
+                return response()->json($room, 201);
             }
             else{
-                return response()->json(['error'=>'some Error'], 401);   
+                return response()->json(['error'=>'try to Searching the room is not available '], 401);   
             }
         }
         else{
             return response()->json(['error'=>'Unauthorised amin'], 401);
         }
+
     }
 
     /**
@@ -152,24 +152,24 @@ class propertyController extends Controller
         $role = $user->role;
         if($role == 'admin'){
             
-            $property = property::findOrFail($id);
+            $room= room::findOrFail($id);
 
+           
             $validator = Validator::make($request->all(), [
-                'propertyType' => 'required',
-                'propertyName' => 'required',
-                'noOfRoom' => 'required',
-                'streetAddress' => 'required',
-                'sector' => 'required',
-                'city' =>'required',
+                'roomType' => 'required',
+                'NameOfRoom' => 'required',
+                'price' => 'required',
+                'availableRoom' => 'required',
+                'property_id' => 'required',
             ]);
-    
+
             if ($validator->fails()) {
                 return response()->json(['error'=>$validator->errors()], 401);            
             }
             
-            if( $property->update($request->all()) );
+            if( $room->update($request->all()) );
             {
-                return response()->json($property, 201);
+                return response()->json($room, 201);
             }
             return response()->json(['error'=>'Not update'], 401);
         }
@@ -191,8 +191,8 @@ class propertyController extends Controller
         
         $role = $user->role;
         if($role == 'admin'){
-            $property = property::findorFail($id);
-            if($property->delete()){
+            $room = room::findorFail($id);
+            if($room->delete()){
 
                 // return new propertyResource($property);
                 return response()->json(['success'=>'deleted'], 201);

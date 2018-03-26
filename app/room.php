@@ -12,7 +12,7 @@ class room extends Model
      * @var array
      */
     protected $fillable = [
-        'roomType', 'NameOfRoom', 'price','availableRoom','bookedRoom','occuption','property_id',
+        'roomType', 'NameOfRoom', 'price','availableRoom','property_id',
     ];
 
     /**
@@ -21,6 +21,6 @@ class room extends Model
      * @var array
      */
     protected $hidden = [
-      
+        'property_id'
     ];
 }

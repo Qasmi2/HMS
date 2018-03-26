@@ -14,6 +14,7 @@ class property extends Model
      */
     protected $fillable = [
         'propertyType', 'propertyName', 'noOfRoom','streetAddress','sector','Latitude','Longitude','city','user_id',
+        'internet','parking','mess','TvCabel','RoomCleaning','lundary','cctvCamear',
     ];
 
     /**
@@ -22,7 +23,7 @@ class property extends Model
      * @var array
      */
     protected $hidden = [
-        
+        'user_id'
     ];
 }
 

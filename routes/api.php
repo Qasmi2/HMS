@@ -38,6 +38,17 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('propertyCreate', 'propertyController@store');
     Route::put('property/{id}', 'propertyController@update');
     Route::delete('propertyDelete/{id}', 'propertyController@destroy');
+
+    //Room 
+
+    Route::get('getRoom','roomController@index');
+    Route::get('getRoom/{id}','roomController@show');
+    Route::post('createRoom','roomController@store');
+    Route::put('getRoom/{id}','roomController@update');
+    Route::delete('delete/{id}','roomController@destroy');
 });
+
+
+
 
 
