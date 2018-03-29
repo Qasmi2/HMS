@@ -61,6 +61,9 @@ class bookingController extends Controller
             {
                 return respnse()->json(['Success' =>'Your request has been recorded we will contect soon'],201);
             }
+            else{
+                return response()->json(['error'=>'Room data  inserting error  '], 401);  
+            }
         
     }
 

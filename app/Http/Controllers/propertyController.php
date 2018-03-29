@@ -17,15 +17,21 @@ class propertyController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $userID = $user->id;
         $role = $user->role;
         if($role == 'admin'){
 
-            $property = property::paginate(10);
+            // $property = property::paginate(10);
             //return collection of articles as a resource
             // return propertyResource::collection($property);
-
-            return response()->json($property, 201);
+            $propertyID  = DB::table('properties')->where('user_id','=',$userID)->value('id');
+            return response()->json($ $propertyID, 201);
         }
+        else{
+            return response()->json(['error'=>'Unauthorised amin'], 401);
+        }
+
+
     }
 
     /**
