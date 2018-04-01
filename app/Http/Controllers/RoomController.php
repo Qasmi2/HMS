@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\room;
 use Validator;
+
 class RoomController extends Controller
 {
     /**
@@ -49,14 +50,13 @@ class RoomController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * store the room of the property of the admin 
      */
     public function store(Request $request)
     {
         $user = Auth::user();
         $userID = $user->id;
         // $propertyID ['id'] = DB::table('properties')->where('user_id','=',$userID)->value('id');
-        
-       
 
         $role = $user->role;
         if($role == 'admin'){
@@ -81,17 +81,29 @@ class RoomController extends Controller
             $Room->price = $request->input('price');
             $Room->availableRoom = $request->input('availableRoom');
             // $Room->bookedRoom = $request->input('bookedRoom');
-            $Room->property_id  = $request->input('property_id');
-
-           if($Room->save()){
-    
-            // return new propertyResource($hostal);
-               return response()->json($Room, 201);
+            $propertyId = $Room->property_id  = $request->input('property_id');
             
-           }
-           else{
-            return response()->json(['error'=>'Something wrong Not Save into database'], 401);
-        }
+            $noOfRoom = DB::table('properties')->where('id', '=', $propertyId )->value('noOfRoom');
+            $room = DB::table('rooms')->where('property_id','=', $propertyId)->pluck('id')->count();
+            
+            if($room < $noOfRoom)
+            {
+                if($Room->save()){
+    
+                    // return new propertyResource($hostal);
+                       return response()->json($Room, 201);
+                    
+                   }
+                   else{
+                    return response()->json(['error'=>'Something wrong Not Save into database'], 401);
+                }
+            }else{
+             
+                return response()->json(['error'=>'No of Room of your Property have been completed'], 401);
+
+            }
+
+          
 
 
         }

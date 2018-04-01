@@ -7,12 +7,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\property;
 use Validator;
+use DB;
 class propertyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * get the the property Name  of the admin
      */
     public function index()
     {
@@ -24,8 +26,15 @@ class propertyController extends Controller
             // $property = property::paginate(10);
             //return collection of articles as a resource
             // return propertyResource::collection($property);
-            $propertyID  = DB::table('properties')->where('user_id','=',$userID)->value('id');
-            return response()->json($ $propertyID, 201);
+            // $propertyID  = DB::table('properties')->where('user_id','=',$userID)->value('id');
+            // $propertyID = DB::table('properties')->pluck('propertyType');
+            // $propertyID  = DB::table('properties')->where('id',$userID)->get();
+            // $propertyID = DB::table('properties')->lists('property_id',$userID);
+            $propertyID = DB::table('properties')->where('user_id', $userID)->pluck('id');
+            // $propertyID = DB::table('properties')->where('user_id', $userID)->pluck('propertyType');
+            // $propertyID = DB::table('properties')->where('user_id', $userID)->get();
+
+            return response()->json( $propertyID, 201);
         }
         else{
             return response()->json(['error'=>'Unauthorised amin'], 401);
@@ -38,10 +47,23 @@ class propertyController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * Get all the property Info of the admin 
      */
-    public function create()
+    public function showAllProperty()
     {
-        //
+        $user = Auth::user();
+        $userID = $user->id;
+        $role = $user->role;
+        if($role == 'admin'){
+
+        
+            $property = DB::table('properties')->where('user_id', $userID)->get();
+
+            return response()->json( $property, 201);
+        }
+        else{
+            return response()->json(['error'=>'Unauthorised amin'], 401);
+        }
     }
 
     /**
@@ -49,6 +71,8 @@ class propertyController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * 
+     * insert the property info of the admin
      */
     public function store(Request $request)
     {
@@ -113,6 +137,7 @@ class propertyController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * Get the specifice property info of the admin
      */
     public function show($id)
     {
@@ -151,6 +176,7 @@ class propertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * Updated the specific property info of the admin
      */
     public function update(Request $request, $id)
     {
@@ -189,6 +215,7 @@ class propertyController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * Delete the specific property info of the admin
      */
     public function destroy($id)
     {

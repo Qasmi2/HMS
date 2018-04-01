@@ -33,11 +33,15 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 Route::group(['middleware' => 'auth:api'], function(){
 
-    Route::get('propertyget', 'propertyController@index');
-    Route::get('propertyget/{id}', 'propertyController@show');
-    Route::post('propertyCreate', 'propertyController@store');
-    Route::put('property/{id}', 'propertyController@update');
-    Route::delete('propertyDelete/{id}', 'propertyController@destroy');
+    Route::get('yourProperties', 'propertyController@index');
+    Route::get('getProperty/{id}', 'propertyController@show');
+    Route::get('getAllProperties', 'propertyController@showAllProperty');
+    Route::post('createProperty', 'propertyController@store');
+    Route::put('updateProperty/{id}', 'propertyController@update');
+    Route::delete('deleteProperty/{id}', 'propertyController@destroy');
+
+
+    
 
     //Room 
 
