@@ -17,17 +17,23 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         
         $user = Auth::user();
+        $userID = $user->id;
         $role = $user->role;
         if($role == 'admin'){
 
-            $room = room::paginate(10);
+            // $room = room::paginate(10);
+            // finding property_ID of the auth user 
+            // $propertyID = DB::table('properties')->where('user_id', $userID)->pluck('id');
+            
+            // $ROOMS = DB::table('rooms')->where('property_id', $propertyID)->pluck('id');
+            // $room = DB::table('rooms')->where('property_id','=', $propertyID)->get();
             //return collection of articles as a resource
             // return propertyResource::collection($property);
-
+            $room = DB::table('rooms')->where('property_id','=', $id)->get();
             return response()->json($room, 201);
         }
         else{
@@ -102,10 +108,6 @@ class RoomController extends Controller
                 return response()->json(['error'=>'No of Room of your Property have been completed'], 401);
 
             }
-
-          
-
-
         }
         else{
             return response()->json(['error'=>'Unauthorised amin'], 401);

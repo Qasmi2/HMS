@@ -45,11 +45,11 @@ Route::group(['middleware' => 'auth:api'], function(){
 
     //Room 
 
-    Route::get('getRoom','roomController@index');
+    Route::get('getRooms/{id}','roomController@index');
     Route::get('getRoom/{id}','roomController@show');
     Route::post('createRoom','roomController@store');
-    Route::put('getRoom/{id}','roomController@update');
-    Route::delete('delete/{id}','roomController@destroy');
+    Route::put('updatedRoom/{id}','roomController@update');
+    Route::delete('deleteRoom/{id}','roomController@destroy');
 });
 
 
