@@ -37,11 +37,11 @@ class bookingController extends Controller
         $user = Auth::user();
         $userID = $user->id;
         $role = $user->role;
-        
+        if($role == 'user'){
 
             $validator = Validator::make($request->all(), [
                 
-                
+                'room_id' => 'required',
                
             ]);
     
@@ -56,7 +56,6 @@ class bookingController extends Controller
             $booking->user_id = $userID;
             $booking->room_id = $requist->input('room_id');
             
-            
             if($booking->save())
             {
                 return respnse()->json(['Success' =>'Your request has been recorded we will contect soon'],201);
@@ -64,7 +63,9 @@ class bookingController extends Controller
             else{
                 return response()->json(['error'=>'Room data  inserting error  '], 401);  
             }
-        
+        } else{
+            return response()->json(['error'=>'unauthorized User  '], 401);  
+        }
     }
 
     /**
@@ -103,11 +104,36 @@ class bookingController extends Controller
         $role = $user->role;
         if($role == 'admin'){
 
-            $booking->status = $request->input('status');
-            if( $booking->update($request->all()) );
-            {
-                return respnse()->json(['Success' =>'room has been booked '],201);
+            $validator = Validator::make($request->all(), [
+                
+                'status' => 'required',
+               
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['error'=>$validator->errors()], 401);            
             }
+
+            $booking = room::findOrFail($id);
+            $status = $booking->status = $request->input('status');
+            if($status = 'confirm'){
+                
+                $booking->availableRoom = 0;
+                if( $booking->update($request->all()) );
+                {
+                   
+                    return respnse()->json(['Success' =>'room has been booked '],201);
+                }
+                
+            }
+            if($status = 'reject') {
+
+                if( $booking->update($request->all()) );
+                {
+                    return respnse()->json(['Success' =>'Soory Your request has been Rejected'],201);
+                }
+                
+            }
+           
         }
         else{
         return response()->json(['error'=>'Unauthorised amin'], 401);

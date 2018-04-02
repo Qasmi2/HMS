@@ -22,6 +22,6 @@ class booking extends Model
      * @var array
      */
     protected $hidden = [
-        
+        // 'user_id', 'room_id',
     ];
 }
