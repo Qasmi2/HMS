@@ -40,9 +40,6 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::put('updateProperty/{id}', 'propertyController@update');
     Route::delete('deleteProperty/{id}', 'propertyController@destroy');
 
-
-    
-
     //Room 
 
     Route::get('getRooms/{id}','roomController@index');
@@ -52,7 +49,11 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::delete('deleteRoom/{id}','roomController@destroy');
 });
 
+Route::group(['middleware' => 'auth:api'], function(){
 
+    Route::post('booking','bookingController@store');
+    Route::put('booked/{id}','bookingController@update');
+});
 
 
 

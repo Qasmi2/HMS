@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
+
 class HomeController extends Controller
 {
     /**
@@ -11,9 +14,12 @@ class HomeController extends Controller
      *
      * @return void
      */
+   var  $user,$role = "";
     public function __construct()
     {
         $this->middleware('auth');
+        // $user = Auth::user();
+        // $role = Auth::role();
     }
 
     /**
@@ -23,6 +29,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        // if( $role == 'admin'){
+
+        //     return view('deshboard-Admin');
+        // }
+        // if($role == 'user'){
+
+        //     return view('deshboard-user');
+        // }
+        return view('Deshboard.deshboard-Admin');
+        
+    }
+
+    // public function deshboardAdmin()
+    // {
+        
+    //     return view('deshboard-Admin');
+    // }
+    public function deshboardUser()
+    {
+        
+        return view('Deshboard.deshboard-user');
     }
 }

@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\booking;
+use App\room;
+use Validator;
+use DB;
 
 class bookingController extends Controller
 {
@@ -42,23 +48,24 @@ class bookingController extends Controller
             $validator = Validator::make($request->all(), [
                 
                 'room_id' => 'required',
+                
                
             ]);
     
             if ($validator->fails()) {
                 return response()->json(['error'=>$validator->errors()], 401);            
             }
-
+             
             $booking = $request->isMethod('put') ? booking::findOrFail 
             ($request->booking_id) : new booking;
-            
-            $booking->status = $request->input('status')->default('pending');
+            $status="pending";
+            $booking->status =  $status;
             $booking->user_id = $userID;
-            $booking->room_id = $requist->input('room_id');
+            $booking->room_id = $request->input('room_id');
             
             if($booking->save())
             {
-                return respnse()->json(['Success' =>'Your request has been recorded we will contect soon'],201);
+                return response()->json(['Success' =>'Your request has been recorded we will contect soon'],201);
             }
             else{
                 return response()->json(['error'=>'Room data  inserting error  '], 401);  
@@ -113,15 +120,15 @@ class bookingController extends Controller
                 return response()->json(['error'=>$validator->errors()], 401);            
             }
 
-            $booking = room::findOrFail($id);
+            $booking = booking::findOrFail($id);
             $status = $booking->status = $request->input('status');
             if($status = 'confirm'){
-                
-                $booking->availableRoom = 0;
+                $availibility = room::findOrFail($id);
+                $availibility->availableRoom = 0;
                 if( $booking->update($request->all()) );
                 {
-                   
-                    return respnse()->json(['Success' =>'room has been booked '],201);
+                    $availibility->update();
+                    return response()->json(['Success' =>'room has been booked '],201);
                 }
                 
             }
@@ -129,7 +136,7 @@ class bookingController extends Controller
 
                 if( $booking->update($request->all()) );
                 {
-                    return respnse()->json(['Success' =>'Soory Your request has been Rejected'],201);
+                    return respnse()->json(['error' =>'Soory Your request has been Rejected'],201);
                 }
                 
             }

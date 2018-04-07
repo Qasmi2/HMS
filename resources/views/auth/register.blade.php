@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('regis') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -54,10 +54,28 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="c_password" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="c_password" type="password" class="form-control" name="c_password" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right">Select your Role</label>
+
+                            <div class="col-md-6">
+                                {{-- <select class="form-control" name="role" id="role" >
+                                        <option value="">Select a Town</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
+                                </select> --}}
+                                <input id="role" type="text" class="form-control" name="role" required>
+                                @if($errors->has('name'))
+                                    <span class="Please Enter the role">
+                                        <strong>{{$errors->first('role')}}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
