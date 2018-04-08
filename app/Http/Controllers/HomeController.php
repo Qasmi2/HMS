@@ -36,20 +36,20 @@ class HomeController extends Controller
         // }
         // if($role == 'user'){
 
-        //     return view('deshboard-user');
+        //     
         // }
         return view('Deshboard.deshboard-Admin');
         
     }
 
-    // public function deshboardAdmin()
-    // {
-        
-    //     return view('deshboard-Admin');
-    // }
+    
     public function deshboardUser()
     {
         
         return view('Deshboard.deshboard-user');
     }
+
+
+
+   
 }

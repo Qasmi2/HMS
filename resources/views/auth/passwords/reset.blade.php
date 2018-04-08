@@ -1,12 +1,14 @@
-@extends('layouts.app')
+@extends('layout.master')
 
 @section('content')
+<br><br><br>
+<div class="col-md-offset-2 col-lg-offset-2 col-xs-12 col-sm-12">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
+                <div class="col-md-offset-5 col-lg-offset-5 col-xs-12 col-sm-12 card-header">{{ __('Reset Password') }}</div>
+                <br><br><br>
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.request') }}">
                         @csrf
@@ -53,7 +55,8 @@
                                 @endif
                             </div>
                         </div>
-
+                        <br />>br>
+                        <div class="col-md-offset-5 col-lg-offset-5">
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -61,6 +64,7 @@
                                 </button>
                             </div>
                         </div>
+                    </div>
                     </form>
                 </div>
             </div>

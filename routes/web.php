@@ -12,8 +12,9 @@
 */
 
 //HOME PAGE Show
+
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('main-page');
 });
 //REGISTERIION PAGE
 Route::get('/reg', function () {
@@ -27,21 +28,31 @@ Route::get('/logi', function () {
 })->name('logi');
 //LOGIN FORM DATA PASS TO CONTROLLER 
 Route::post('/log', 'FrontEndController@getLogin')->name('log');
+//ADD PROPERTY 
+Route::get('/addproperty', function () {
+    return view('adminAction.add-property');
+})->name('addproperty');
+//ADD PROPERTY FROM DATA
+Route::post('/propertyAdd', 'FrontEndPropertyController@getProperty')->name('propertyAdd');
 
-// })->name('/reg');
-// Route::post('/registertion', ['as' => 'registertion', 'uses' => 'FrontEndController@getRegisters']);
 
-// // Route::post('registerForm', 'FrontEndController@getRegister');
-// // Route::post('login', 'FrontEndController@getLogin');
 
-// Route::get('/master', function () {
-//     return view('layout.master');
-// });
+Route::get('/desh', function () {
+    return view('DeshBoard');
+})->name('/desh');
+Route::get('/masterdesh', function () {
+    return view('Deshboard.Master-Deshboard');
+})->name('/masterdesh');
+Route::get('/errorMessage', function () {
+    return view('error');
+})->name('/errorMessage');
+Route::get('/mainpage', 'MainPageController@mainPage')->name('mainpage');
+
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user','HomeController@deshboardUser')->name('/user');
-// Auth::routes();
-// Route::get('/home', 'HomeController@deshboard-Admin')->name('home');
+// HOME PAGE 
+ 
 
 

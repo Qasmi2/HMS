@@ -1,26 +1,44 @@
+{{-- @extends('Deshboard.deshboard-Admin') --}}
 @extends('layouts.app')
-
 @section('content')
+{{-- @include('Deshboard.Deshboard-sidebar-Admin') --}}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard Admin</div>
+        
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                           
+                <div class="col-md-3" id="sidebar">
+                        <div class="list-group">
+                          <a href="{{ route('addproperty') }}" class="list-group-item active">Add Your Properties </a>
+                          {{-- <a href="{{ route('') }}" class="list-group-item">Add Rooms</a>
+                          <a href="{{ route('') }}" class="list-group-item">Booking Requests </a>
+                          <a href="{{ route('') }}" class="list-group-item">View Properties </a>
+                          <a href="{{ route('') }}" class="list-group-item">View Room </a>
+                          <a href="{{ route('') }}" class="list-group-item">Booked Room </a> --}}
+                          
                         </div>
-                    @endif
+                </div><!--/.sidebar-offcanvas-->
+                <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">Dashboard Admin</div>
 
-                    {{ Auth::user()->name }}
-                    {{ Auth::user()->id }}
-                    {{ Auth::user()->role }}
-                    You are logged in!
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            
+                            </div>
+                        @endif
+
+                       
+                        {{-- {{ Auth::user()->id }}
+                        {{ Auth::user()->role }} --}}
+                        <div class="jumbotron">
+                                <h1>Wellcome  {{ Auth::user()->name }} </h1>
+                                <p>Easy way to Run your Business  </p>
+                        </div>
+                       
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

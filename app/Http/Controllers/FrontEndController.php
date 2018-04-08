@@ -66,9 +66,13 @@ class FrontEndController extends Controller
         curl_close($curl);
 
         if ($err) {
-        echo "cURL Error #:" . $err;
+       
+        return redirect()->back();
+        // return redirect('/errorMessage');
+        // ->with('status', $err);
         } else {
         echo $response;
+       
         }
 
 
@@ -121,13 +125,19 @@ class FrontEndController extends Controller
         $response = curl_exec($curl);
         $err = curl_error($curl);
 
+        $result= json_decode($response,true);
+        $error = json_decode($err,true);
+        
+        // return Redirect::back()->withErrors($err)->withInput();
         curl_close($curl);
 
-        if ($err) {
-        echo "cURL Error #:" . $err;
-        } else {
-        echo $response;
-        }
+        // if ($err) {
+        // echo "cURL Error #:" . $err;
+        // // return Redirect::back()->withErrors(['msg', 'The Message']);
+        // // return Redirect::back()->withErrors($err)->withInput();
+        // } else {
+        // echo $response;
+        // }
 
     }
 

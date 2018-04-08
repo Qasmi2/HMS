@@ -37,16 +37,19 @@ class UserController extends Controller
      */
     public function register(Request $request)
     {
+        
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
             'c_password' => 'required|same:password',
             'role' => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);            
+            // redirect()->route('reg')->with('message', 'Record successfully created')->withErrors($validator);
+
         }
 
         $input = $request->all();
@@ -68,4 +71,15 @@ class UserController extends Controller
         $user = Auth::user();
         return response()->json(['success' => $user], $this->successStatus);
     }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+
+
 }
