@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use Redirect;
+use View;
+use Response;
 
 class FrontEndController extends Controller
 {
@@ -33,7 +36,16 @@ class FrontEndController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);            
+
+            // return response(view('error',array('error'=>$validator)),200,['Content-Type' => 'application/json']);
+            // return response(view('error')->with('error', array('name' => $validator)));
+        //    return  View::make('error', $validator);
+            // return response()->view('error')->json(['error'=>$validator->errors()], 401);     
+            // return Redirect::to('auth.register')->with('message', 'Registeration Failed');  
+            // $tes = json(['error'=>$validator->errors()]);
+            // return response()
+            // ->view('auth.register', $tes);
+            //  ->header('Content-Type', $type);
         }
         $registration['name'] = $request->input('name');
         $registration['email'] = $request->input('email');
@@ -59,23 +71,39 @@ class FrontEndController extends Controller
                 "content-type: application/json",
             ),
         ));
-        
-        $response = curl_exec($curl);
+        $success= curl_exec($curl);
         $err = curl_error($curl);
+        $erre= json_decode($err,true);
+        $result= json_decode($success,true);
+
+        // var_dump($response);
+        // var_dump($err);
+        // var_dump($erre);
+        // var_dump($result);
+        
+        // if ($erre ) {
+       
+        // //    return response()
+        // //     ->view('error', $erre);
+        // // return response()->json(['error'=>$erre], 401);
+        
+        // return view('error')->with('erre' , $erre);
+        //     } else {
+
+
+            // echo $response;
+            // return Redirect::to('/')->with('message', 'Successfull Register');
+            
+            // return response()
+            // ->view('error', $result);
+            // return view('error')->with('result' , $result);
+
+            // return response()->json(['success'=>$result], 401);
+            // return view('error')->with('result' , $result);
+            
+        // }
 
         curl_close($curl);
-
-        if ($err) {
-       
-        return redirect()->back();
-        // return redirect('/errorMessage');
-        // ->with('status', $err);
-        } else {
-        echo $response;
-       
-        }
-
-
 
    
     }

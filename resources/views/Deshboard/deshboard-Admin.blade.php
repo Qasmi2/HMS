@@ -1,6 +1,7 @@
 {{-- @extends('Deshboard.deshboard-Admin') --}}
 @extends('layouts.app')
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 {{-- @include('Deshboard.Deshboard-sidebar-Admin') --}}
 <div class="container">
     <div class="row justify-content-center">

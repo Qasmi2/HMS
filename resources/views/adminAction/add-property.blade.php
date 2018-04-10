@@ -30,9 +30,10 @@
                         @endif
 
                        
-                                {{-- {{ Auth::user()->id }}
+                                {{ Auth::user()->id }}
                                 {{ Auth::user()->name }}
-                                    {{ Auth::user()->role }} --}}
+                                {{ Auth::user()->role }}
+                                 
                             
                        
                                     
@@ -42,6 +43,7 @@
                                      <div class="card-body">
                                         <form method="POST" action="{{ route('propertyAdd') }}">
                                              @csrf
+                                             
                                                 
                                              <div class="form-group row">
                                                 <label for="propertyType" class="col-md-4 col-form-label text-md-right">{{ __('propertyType') }}</label>
@@ -64,7 +66,7 @@
                                                     <label for="propertyName" class="col-md-4 col-form-label text-md-right">{{ __('Property Name') }}</label>
                         
                                                     <div class="col-md-6">
-                                                        <input id="propertyName" type="text" placeholder="Enter your property name name" class="form-control{{ $errors->has('propertyName') ? ' is-invalid' : '' }}" name="name" value="{{ old('propertyName') }}" required autofocus>
+                                                        <input id="propertyName" type="text" placeholder="Enter your property name " class="form-control{{ $errors->has('propertyName') ? ' is-invalid' : '' }}" name="propertyName" value="{{ old('propertyName') }}" required>
                         
                                                         @if ($errors->has('propertyName'))
                                                             <span class="invalid-feedback">
@@ -92,7 +94,7 @@
                                                     <label for="streetAddress" class="col-md-4 col-form-label text-md-right">{{ __('Street Address') }}</label>
                         
                                                     <div class="col-md-6">
-                                                        <input id="streetAddress" type="text" placeholder="Enter streetAddress" class="form-control{{ $errors->has('streetAddress') ? ' is-invalid' : '' }}" name="StreetAddress" required>
+                                                        <input id="streetAddress" type="text" placeholder="Enter street Address" class="form-control{{ $errors->has('streetAddress') ? ' is-invalid' : '' }}" name="streetAddress" required>
                         
                                                         @if ($errors->has('streetAddress'))
                                                             <span class="invalid-feedback">
@@ -226,20 +228,20 @@
                                                 <div class="col-md-4" style="margin-left:260px;">
                                                         
                                                      <label class="checkbox-inline">
-                                                        <input name="internet" type="checkbox" value="Internet">Internet
+                                                        <input name="internet" type="checkbox" value="1">Internet
                                                       </label>
                                                 
                                                       <label class="checkbox-inline">
-                                                        <input name="mess" type="checkbox" value="Mess">Mess
+                                                        <input name="mess" type="checkbox" value="1">Mess
                                                       </label>
                                                       <label class="checkbox-inline">
-                                                        <input name="TvCable" type="checkbox" value="TV-Cable">TV-Cable
+                                                        <input name="TvCable" type="checkbox" value="1">TV-Cable
                                                       </label>
                                                       <label class="checkbox-inline">
-                                                        <input name="RoomCleaning" type="checkbox" value="RoomCleaning">Room Cleaning  
+                                                        <input name="RoomCleaning" type="checkbox" value="1">Room Cleaning  
                                                       </label>
                                                       <label class="checkbox-inline">
-                                                        <input name="lundary" type="checkbox" value="Lundary">Lundary
+                                                        <input name="lundary" type="checkbox" value="1">Lundary
                                                       </label>
                                                       <label class="checkbox-inline">
                                                         <input name="cctvCamear" type="checkbox" value="1">cctv Camear 

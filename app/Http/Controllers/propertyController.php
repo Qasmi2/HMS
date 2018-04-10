@@ -98,7 +98,7 @@ class propertyController extends Controller
             $hostal = $request->isMethod('put') ? property::findOrFail 
             ($request->property_id) : new property;
            
-            $hostal->id = $request->input('property_id');
+            // $hostal->id = $request->input('property_id');
             $hostal->propertyType = $request->input('propertyType');
             $hostal->propertyName = $request->input('propertyName');
             $hostal->noOfRoom = $request->input('noOfRoom');

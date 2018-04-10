@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 //Route of the admin side
 
-Route::group(['middleware' => 'auth:api'], function(){
+// Route::group(['middleware' => 'auth:api'], function(){
 
     Route::get('yourProperties', 'propertyController@index');
     Route::get('getProperty/{id}', 'propertyController@show');
@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('createRoom','roomController@store');
     Route::put('updatedRoom/{id}','roomController@update');
     Route::delete('deleteRoom/{id}','roomController@destroy');
-});
+// });
 
 Route::group(['middleware' => 'auth:api'], function(){
 
