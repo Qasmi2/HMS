@@ -39,9 +39,9 @@ class UserController extends Controller
     {
         
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|',
             'c_password' => 'required|same:password',
             'role' => 'required',
         ]);
@@ -58,7 +58,7 @@ class UserController extends Controller
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
 
-        return response()->json(['success'=>$success], $this->successStatus);
+        return response()->json($success,201, $this->successStatus);
     }
 
     /**
@@ -72,14 +72,7 @@ class UserController extends Controller
         return response()->json(['success' => $user], $this->successStatus);
     }
 
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
+   
 
 
 }

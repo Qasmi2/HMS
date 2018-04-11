@@ -23,13 +23,13 @@ class CreatePropertiesTable extends Migration
             $table->double('Latitude')->nullable();
             $table->double('Longitude')->nullable();
             $table->string('city');
-            $table->tinyInteger('internet')->default(0);
-            $table->tinyInteger('parking')->default(0);
-            $table->tinyInteger('mess')->default(0);
-            $table->tinyInteger('TvCabel')->default(0);
-            $table->tinyInteger('RoomCleaning')->default(0);
-            $table->tinyInteger('lundary')->default(0);
-            $table->tinyInteger('cctvCamear')->default(0);
+            $table->tinyInteger('internet')->nullable();
+            $table->tinyInteger('parking')->nullable();
+            $table->tinyInteger('mess')->nullable();
+            $table->tinyInteger('TvCabel')->nullable();
+            $table->tinyInteger('RoomCleaning')->nullable();
+            $table->tinyInteger('lundary')->nullable();
+            $table->tinyInteger('cctvCamear')->nullable();
     
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

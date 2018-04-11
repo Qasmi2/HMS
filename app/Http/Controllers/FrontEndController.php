@@ -25,7 +25,7 @@ class FrontEndController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getRegisters(Request $request)
+    public function getregisters(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -36,17 +36,13 @@ class FrontEndController extends Controller
         ]);
 
         if ($validator->fails()) {
-
-            // return response(view('error',array('error'=>$validator)),200,['Content-Type' => 'application/json']);
-            // return response(view('error')->with('error', array('name' => $validator)));
-        //    return  View::make('error', $validator);
-            // return response()->view('error')->json(['error'=>$validator->errors()], 401);     
-            // return Redirect::to('auth.register')->with('message', 'Registeration Failed');  
-            // $tes = json(['error'=>$validator->errors()]);
-            // return response()
-            // ->view('auth.register', $tes);
-            //  ->header('Content-Type', $type);
+            // return response()->json(['error'=>$validator->errors()], 401);           
+            return view('main-page')->with($validator); 
         }
+
+     
+          
+        
         $registration['name'] = $request->input('name');
         $registration['email'] = $request->input('email');
         $registration['password'] = $request->input('password');
@@ -75,7 +71,15 @@ class FrontEndController extends Controller
         $err = curl_error($curl);
         $erre= json_decode($err,true);
         $result= json_decode($success,true);
-
+        if( http_response_code() == 201 ) 
+        {
+            return view('main-page');
+        }
+        if( http_response_code() == 401 ) 
+        {
+            return view('error');
+        }
+        
         // var_dump($response);
         // var_dump($err);
         // var_dump($erre);
@@ -89,9 +93,10 @@ class FrontEndController extends Controller
         
         // return view('error')->with('erre' , $erre);
         //     } else {
-
-
-            // echo $response;
+       
+            return view('error')->with($result);
+            
+            // return  array($result);
             // return Redirect::to('/')->with('message', 'Successfull Register');
             
             // return response()
@@ -214,3 +219,14 @@ class FrontEndController extends Controller
         //
     }
 }
+
+
+       // return response(view('error',array('error'=>$validator)),200,['Content-Type' => 'application/json']);
+            // return response(view('error')->with('error', array('name' => $validator)));
+        //    return  View::make('error', $validator);
+            // return response()->view('error')->json(['error'=>$validator->errors()], 401);     
+            // return Redirect::to('auth.register')->with('message', 'Registeration Failed');  
+            // $tes = json(['error'=>$validator->errors()]);
+            // return response()
+            // ->view('auth.register', $tes);
+            //  ->header('Content-Type', $type);

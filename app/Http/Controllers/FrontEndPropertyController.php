@@ -48,6 +48,7 @@ class FrontEndPropertyController extends Controller
             'streetAddress' => 'required',
             'sector' => 'required',
             'city' =>'required',
+            
         ]);
 
         if ($validator->fails()) {
@@ -55,6 +56,8 @@ class FrontEndPropertyController extends Controller
         }
 
         
+        $property['user_id'] = $request->input('user_id');
+        $property['role'] = $request->input('role');
         $property['propertyType'] = $request->input('propertyType');
         $property['propertyName'] = $request->input('propertyName');
         $property['noOfRoom'] = $request->input('noOfRoom');
@@ -75,7 +78,7 @@ class FrontEndPropertyController extends Controller
         
             
             $curl = curl_init();
-            $headr[] = 'Authorization: Auth '.$accesstoken;
+           
             curl_setopt_array($curl, array(
                 CURLOPT_URL => "http://hms.com/api/createProperty",
                 CURLOPT_RETURNTRANSFER => true,
@@ -90,7 +93,7 @@ class FrontEndPropertyController extends Controller
                     "accept: */*",
                     "accept-language: en-US,en;q=0.8",
                     "content-type: application/json",
-                    'Authorization' => 'Bearer '.$accessToken,
+                    'Authorization' => 'Bearer '.csrf_field(),
                    
                     
                 ),
@@ -107,13 +110,13 @@ class FrontEndPropertyController extends Controller
 
         if ($err) {
        
-        var_dump($err);
-        exit();
+        return view('error');
         // return redirect('/errorMessage');
         // ->with('status', $err);
         } else {
-        var_dump( $response);
-       exit();
+            
+           echo $result[0]->id;
+            return view('adminAction.returnproperty')->with($result->toArray());
         }
 
 

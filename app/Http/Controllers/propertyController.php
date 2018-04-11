@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\propertyResource;
 use App\property;
 use Validator;
 use DB;
@@ -76,9 +77,11 @@ class propertyController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-        $userID = $user->id;
-        $role = $user->role;
+        
+        $userID =$request->input('user_id');
+        $role = $request->input('role');
+        
+        
         if($role == 'admin'){
             
             $validator = Validator::make($request->all(), [
@@ -98,7 +101,7 @@ class propertyController extends Controller
             $hostal = $request->isMethod('put') ? property::findOrFail 
             ($request->property_id) : new property;
            
-            // $hostal->id = $request->input('property_id');
+            $hostal->id = $request->input('property_id');
             $hostal->propertyType = $request->input('propertyType');
             $hostal->propertyName = $request->input('propertyName');
             $hostal->noOfRoom = $request->input('noOfRoom');
@@ -118,8 +121,8 @@ class propertyController extends Controller
             $hostal->user_id = $userID;
            if($hostal->save()){
     
-            // return new propertyResource($hostal);
-               return response()->json($hostal, 201);
+            return new propertyResource($hostal);
+            //    return response()->json($hostal, 201);
             
            }
            else{

@@ -21,7 +21,7 @@ Route::get('/reg', function () {
     return view('auth.register');
 })->name('reg');
 //REGISTERAION FORM DATA PASS TO CONTROLLER 
-Route::post('/regis', 'FrontEndController@getRegisters')->name('regis');
+Route::post('/regis', 'FrontEndController@getregisters')->name('regis');
 //LOGIN PAGE
 Route::get('/logi', function () {
     return view('auth.login');

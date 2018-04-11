@@ -30,7 +30,7 @@
                         @endif
 
                        
-                                {{ Auth::user()->id }}
+                                 {{-- {{ Auth::user()->id }} --}}
                                 {{ Auth::user()->name }}
                                 {{ Auth::user()->role }}
                                  
@@ -43,8 +43,9 @@
                                      <div class="card-body">
                                         <form method="POST" action="{{ route('propertyAdd') }}">
                                              @csrf
+                                             <input id="user_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                                             <input id="role" name="role" type="hidden" value="{{ Auth::user()->role }}">
                                              
-                                                
                                              <div class="form-group row">
                                                 <label for="propertyType" class="col-md-4 col-form-label text-md-right">{{ __('propertyType') }}</label>
                     
