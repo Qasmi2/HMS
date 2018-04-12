@@ -10,10 +10,10 @@
                         <div class="list-group">
                           <a href="{{ route('addproperty') }}" class="list-group-item active">Add Your Properties </a>
                           <a href="{{ route('addroom') }}" class="list-group-item">Add Rooms</a>
-                          {{-- <a href="{{ route('') }}" class="list-group-item">Booking Requests </a>
-                          <a href="{{ route('') }}" class="list-group-item">View Properties </a>
-                          <a href="{{ route('') }}" class="list-group-item">View Room </a>
-                          <a href="{{ route('') }}" class="list-group-item">Booked Room </a> --}}
+                          <a href="#" class="list-group-item">Booking Requests </a>
+                          <a href="#" class="list-group-item">View Properties </a>
+                          <a href="#" class="list-group-item">View Room </a>
+                          <a href="#" class="list-group-item">Booked Room </a>
                           
                         </div>
                 </div><!--/.sidebar-offcanvas-->
@@ -36,8 +36,9 @@
                          
                             <h1>propery added</h1>
                          
-                         
-
+                                {{-- {{Array[0]['result']->proertyType}} --}}
+                                {{-- {{Array[0]['prpertyName']}} --}}
+                                {{-- {{Array[0]->propertyname}} --}}
                          
                                 {{-- @foreach($data as $key => $value)
                                     <li class="list-group-item"> {{$value->propertyType}}</li>

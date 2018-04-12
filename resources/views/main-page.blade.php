@@ -216,8 +216,8 @@
 <!-- team -->
 <div class="team" id="team">
 	<div class="container">
-			<h3 class="title-w3-agileits title-black-wthree">Meet Our Team</h3>
-			<div id="horizontalTab">
+			<h3 class="title-w3-agileits title-black-wthree">Hostal and Resturents</h3>
+			{{-- <div id="horizontalTab">
 					<ul class="resp-tabs-list">
 					<li>
 						<img src="images/teams1.jpg" alt=" " class="img-responsive" />
@@ -306,7 +306,8 @@
 						<div class="clearfix"> </div>
 					</div>
 					</div>
-			</div>
+			</div> --}}
+
 	</div>
 </div>
 <!-- //team -->
@@ -316,7 +317,7 @@
 				<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g1.jpg" class="swipebox"><img src="images/g1.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>hostal room</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
@@ -324,7 +325,7 @@
 				<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g2.jpg" class="swipebox"><img src="images/g2.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>hostal room name</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
@@ -332,7 +333,7 @@
 				<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g3.jpg" class="swipebox"><img src="images/g3.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4> features</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
@@ -340,7 +341,7 @@
 				<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g4.jpg" class="swipebox"><img src="images/g4.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>rooms</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
@@ -348,7 +349,7 @@
 				<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g5.jpg" class="swipebox"><img src="images/g5.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4> big room</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 					</a>
@@ -356,7 +357,7 @@
 				<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g6.jpg" class="swipebox"><img src="images/g6.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>small rooms</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 					   </div>
 				   </a>
@@ -364,7 +365,7 @@
 				<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g6.jpg" class="swipebox"><img src="images/g7.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>Bed Room</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 					   </div>
 				   </a>
@@ -372,7 +373,7 @@
 				<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g6.jpg" class="swipebox"><img src="images/g8.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>Family Room</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 					   </div>
 				   </a>
@@ -380,7 +381,7 @@
 					<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g9.jpg" class="swipebox"><img src="images/g9.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>sigle room</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
@@ -388,7 +389,7 @@
 				<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g10.jpg" class="swipebox"><img src="images/g10.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4> double room</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
@@ -396,7 +397,7 @@
 				<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g4.jpg" class="swipebox"><img src="images/g4.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>room</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
@@ -404,7 +405,7 @@
 				<div class="col-md-3 gallery-grid gallery1">
 					<a href="images/g2.jpg" class="swipebox"><img src="images/g2.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>room</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
@@ -413,7 +414,7 @@
 </section>
 <!-- //gallery -->
 	 <!-- rooms & rates -->
-      <div class="plans-section" id="rooms">
+      {{-- <div class="plans-section" id="rooms">
 				 <div class="container">
 				 <h3 class="title-w3-agileits title-black-wthree">Rooms And Rates</h3>
 						<div class="priceing-table-main">
@@ -513,10 +514,10 @@
 				<div class="clearfix"> </div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 	 <!--// rooms & rates -->
   <!-- visitors -->
-	<div class="w3l-visitors-agile" >
+	{{-- <div class="w3l-visitors-agile" >
 		<div class="container">
                  <h3 class="title-w3-agileits title-black-wthree">What other visitors experienced</h3> 
 		</div>
@@ -625,7 +626,7 @@
 			</section>
 		</div>	
 	</div>
-  <!-- visitors -->
+  <!-- visitors --> --}}
 <!-- contact -->
 <section class="contact-w3ls" id="contact">
 	<div class="container">

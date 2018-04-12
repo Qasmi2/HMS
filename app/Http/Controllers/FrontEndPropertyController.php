@@ -105,6 +105,12 @@ class FrontEndPropertyController extends Controller
         
         // $response = curl_exec($curl);
         // $err = curl_error($curl);
+       
+       
+        // foreach ($someArray as $key => $value) {
+            // echo $value["propertyType"] . ", " . $value["propertyName"] . "<br>";
+            // echo Array.id[0];
+        // }
 
         curl_close($curl);
 
@@ -119,7 +125,7 @@ class FrontEndPropertyController extends Controller
         // exit();
         // var_dump($result);
         
-            return view('adminAction.returnproperty',$result);
+            return view('adminAction.returnproperty')->with('restult',$result);
         }
 
     }

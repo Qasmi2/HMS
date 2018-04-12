@@ -10,10 +10,10 @@
                         <div class="list-group">
                           <a href="{{ route('addproperty') }}" class="list-group-item active">Add Your Properties </a>
                           <a href="{{ route('addroom') }}" class="list-group-item">Add Rooms</a>
-                          {{-- <a href="{{ route('') }}" class="list-group-item">Booking Requests </a>
-                          <a href="{{ route('') }}" class="list-group-item">View Properties </a>
-                          <a href="{{ route('') }}" class="list-group-item">View Room </a>
-                          <a href="{{ route('') }}" class="list-group-item">Booked Room </a> --}}
+                          <a href="#" class="list-group-item">Booking Requests </a>
+                          <a href="#" class="list-group-item">View Properties </a>
+                          <a href="#" class="list-group-item">View Room </a>
+                          <a href="#" class="list-group-item">Booked Room </a>
                           
                         </div>
                 </div><!--/.sidebar-offcanvas-->
@@ -78,7 +78,7 @@
                                                 </div>
                         
                                                 <div class="form-group row">
-                                                    <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('NO. of Room') }}</label>
+                                                    <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Price of Room') }}</label>
                         
                                                     <div class="col-md-6">
                                                         <input id="price" type="number" placeholder="Enter price of the Room" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" value="{{ old('price') }}" required>
@@ -92,7 +92,7 @@
                                                 </div>
                         
                                             <div class="form-group row">
-                                                <label for="available" class="col-md-4 col-form-label text-md-right">{{ __('Room Type') }}</label>
+                                                <label for="available" class="col-md-4 col-form-label text-md-right">{{ __('Available Y/N') }}</label>
                     
                                                 <div class="col-md-6">
                                                     <select class="form-control" name="availableRoom" id="availableRoom" >

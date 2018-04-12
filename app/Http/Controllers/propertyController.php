@@ -121,8 +121,8 @@ class propertyController extends Controller
             $hostal->user_id = $userID;
            if($hostal->save()){
     
-            // return new propertyResource($hostal);
-               return response()->json($hostal, 201);
+            return new propertyResource($hostal);
+            //    return response()->json($hostal, 201);
             
            }
            else{
