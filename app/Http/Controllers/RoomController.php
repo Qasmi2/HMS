@@ -20,9 +20,8 @@ class RoomController extends Controller
     public function index($id)
     {
         
-        $user = Auth::user();
-        $userID = $user->id;
-        $role = $user->role;
+        $userID =$request->input('user_id');
+        $role = $request->input('role');
         if($role == 'admin'){
 
             // $room = room::paginate(10);
@@ -60,11 +59,13 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-        $userID = $user->id;
+        
+        $role = $request->input('role');
+        
         // $propertyID ['id'] = DB::table('properties')->where('user_id','=',$userID)->value('id');
 
-        $role = $user->role;
+        // var_dump($role);
+        // exit();
         if($role == 'admin'){
 
             $validator = Validator::make($request->all(), [
@@ -88,6 +89,7 @@ class RoomController extends Controller
             $Room->availableRoom = $request->input('availableRoom');
             // $Room->bookedRoom = $request->input('bookedRoom');
             $propertyId = $Room->property_id  = $request->input('property_id');
+            
             
             $noOfRoom = DB::table('properties')->where('id', '=', $propertyId )->value('noOfRoom');
             $room = DB::table('rooms')->where('property_id','=', $propertyId)->pluck('id')->count();

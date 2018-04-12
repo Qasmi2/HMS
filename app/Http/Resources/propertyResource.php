@@ -14,18 +14,18 @@ class propertyResource extends JsonResource
      */
     public function toArray($request)
     {
-       // return parent::toArray($request);
+       return parent::toArray($request);
 
-       return [
+    //    return [
 
-        'id' => $this->id,
-        'propertyType' => $this->propertyType,
-        'propertyName' => $this->propertyName,
-        'noOfRoom'=> $this->noOfRoom,
-        'streetAddress'=> $this->streetAddress,
-        'sector'=> $this->sector,
-        'city'=> $this->city,
+    //     'id' => $this->id,
+    //     'propertyType' => $this->propertyType,
+    //     'propertyName' => $this->propertyName,
+    //     'noOfRoom'=> $this->noOfRoom,
+    //     'streetAddress'=> $this->streetAddress,
+    //     'sector'=> $this->sector,
+    //     'city'=> $this->city,
         
-    ];
+    // ];
     }
 }
