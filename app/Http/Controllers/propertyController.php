@@ -17,12 +17,21 @@ class propertyController extends Controller
      * @return \Illuminate\Http\Response
      * get the the property Name  of the admin
      */
-    public function index()
+    public function properties(Request $request)
     {
-        $user = Auth::user();
-        $userID = $user->id;
-        $role = $user->role;
+        $userID =$request->input('user_id');
+        $role = $request->input('role');
+        
+        // $user = Auth::user();
+        // $userID = $user->id;
+        // $role = $user->role;
+       
+        // $role = $role;
         if($role == 'admin'){
+
+            
+            $property = DB::table('properties')->where('user_id', $userID)->pluck('id');
+            return response()->json( $property, 201);
 
             // $property = property::paginate(10);
             //return collection of articles as a resource
@@ -31,17 +40,16 @@ class propertyController extends Controller
             // $propertyID = DB::table('properties')->pluck('propertyType');
             // $propertyID  = DB::table('properties')->where('id',$userID)->get();
             // $propertyID = DB::table('properties')->lists('property_id',$userID);
-            $propertyID = DB::table('properties')->where('user_id', $userID)->pluck('id');
+     
             // $propertyID = DB::table('properties')->where('user_id', $userID)->pluck('propertyType');
             // $propertyID = DB::table('properties')->where('user_id', $userID)->get();
-
-            return response()->json( $propertyID, 201);
+           
         }
         else{
             return response()->json(['error'=>'Unauthorised amin'], 401);
         }
 
-
+       
     }
 
     /**
@@ -144,22 +152,22 @@ class propertyController extends Controller
      */
     public function show($id)
     {
-        $user = Auth::user();
+        // $user = Auth::user();
     
-        $role = $user->role;
-        if($role == 'admin'){
+        // $role = $user->role;
+        // if($role == 'admin'){
             if($property = property::findorFail($id)){
 
                 // return new propertyResource($property);
                 return response()->json($property, 201);
             }
             else{
-                return response()->json(['error'=>'some Error'], 401);   
+                return response()->json(['error'=>'not find your properties some Error'], 401);   
             }
-        }
-        else{
-            return response()->json(['error'=>'Unauthorised amin'], 401);
-        }
+        // }
+        // else{
+        //     return response()->json(['error'=>'Unauthorised amin'], 401);
+        // }
     }
 
     /**

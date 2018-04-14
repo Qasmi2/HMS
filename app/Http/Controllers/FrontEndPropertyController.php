@@ -27,6 +27,87 @@ class FrontEndPropertyController extends Controller
     {
         //
     }
+     /**
+     * GET the properties.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getProperty(Request $request)
+    {
+        $user = Auth::user();
+        $userID = $user->id;
+        $role = $user->role; 
+        
+
+        $validator = Validator::make($request->all(), [
+          
+            
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        
+        $property['user_id'] = $request->input('user_id');
+        $property['role'] = $request->input('role');
+       
+     
+        
+        
+            
+            $curl = curl_init();
+           
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "http://hms.com/api/yourProperties",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30000,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => json_encode($property),
+                CURLOPT_HTTPHEADER => array(
+                    // Set here requred headers
+                    "accept: */*",
+                    "accept-language: en-US,en;q=0.8",
+                    "content-type: application/json",
+                    'Authorization' => 'Bearer '.csrf_field(),
+                   
+                    
+                ),
+            ));
+            $success= curl_exec($curl);
+            $err = curl_error($curl);
+            $erre= json_decode($err,true);
+            $result= json_decode($success,true);
+        
+        // $response = curl_exec($curl);
+        // $err = curl_error($curl);
+       
+       
+        // foreach ($someArray as $key => $value) {
+            // echo $value["propertyType"] . ", " . $value["propertyName"] . "<br>";
+            // echo Array.id[0];
+        // }
+
+        curl_close($curl);
+
+        if ($err) {
+       
+        return view('error');
+        // return redirect('/errorMessage');
+        // ->with('status', $err);
+        } else {
+            
+        var_dump($result);
+        // exit();
+        // var_dump($result);
+        
+            return view('adminAction.returnproperty')->with('restult',$result);
+        }
+
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +115,7 @@ class FrontEndPropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function getProperty(Request $request)
+    public function insertProperty(Request $request)
     {
         $user = Auth::user();
         $userID = $user->id;
@@ -137,7 +218,7 @@ class FrontEndPropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getRoom(Request $request)
+    public function insertRoom(Request $request)
     {
         $user = Auth::user();
         $userID = $user->id;
@@ -213,9 +294,9 @@ class FrontEndPropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        
     }
 
     /**

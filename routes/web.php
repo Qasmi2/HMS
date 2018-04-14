@@ -33,13 +33,23 @@ Route::get('/addproperty', function () {
     return view('adminAction.add-property');
 })->name('addproperty');
 //ADD PROPERTY FROM DATA
-Route::post('/propertyAdd', 'FrontEndPropertyController@getProperty')->name('propertyAdd');
+Route::post('/propertyAdd', 'FrontEndPropertyController@insertProperty')->name('propertyAdd');
 //ADD ROOM
 Route::get('/addroom', function () {
     return view('adminAction.add-room');
 })->name('addroom');
 //ADD ROOM FROM DATA
-Route::post('/roomadd', 'FrontEndPropertyController@getRoom')->name('roomadd');
+Route::post('/roomadd', 'FrontEndPropertyController@insertRoom')->name('roomadd');
+// VIEW Properties form
+Route::get('/viewproperties', function () {
+    return view('adminAction.view-properties');
+})->name('viewproperties');
+//ADD USER ID and Role to show all properties
+Route::post('/veiwallproperty', 'FrontEndPropertyController@getProperty')->name('veiwallproperty');
+
+
+
+
 
 
 

@@ -26,14 +26,15 @@ Route::post('register', 'UserController@register');
 Route::group(['middleware' => 'auth:api'], function(){
 	Route::get('get-details', 'UserController@getDetails');
 });
-
-
+// GET Property for public views 
+Route::get('/showproperty', 'searchingController@index')->name('show');
+Route::get('/showpropertySector/{sector}', 'searchingController@sector');
 
 //Route of the admin side
 
 // Route::group(['middleware' => 'auth:api'], function(){
 
-    Route::get('yourProperties', 'propertyController@index');
+    Route::post('yourProperties', 'propertyController@properties');
     Route::get('getProperty/{id}', 'propertyController@show');
     Route::get('getAllProperties', 'propertyController@showAllProperty');
     Route::post('createProperty', 'propertyController@store');

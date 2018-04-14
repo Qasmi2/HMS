@@ -32,24 +32,27 @@
                        
                                  {{-- {{ Auth::user()->id }} --}}
                                 {{ Auth::user()->name }}
-                                {{ Auth::user()->role }}
-                         
-                            <h1>propery added</h1>
-                         
-                                {{-- {{Array[0]['result']->proertyType}} --}}
-                                {{-- {{Array[0]['prpertyName']}} --}}
-                                {{-- {{Array[0]->propertyname}} --}}
-                         
-                                {{-- @foreach($data as $key => $value)
-                                    <li class="list-group-item"> {{$value->propertyType}}</li>
-                                    <li class="list-group-item"> {{$value->propertyName}}</li>
-                                @endforeach
-                             --}}
-                         
-                               
-                            
-                           
                                 
+                                {{ Auth::user()->role }}
+
+                                <form method="POST" action="{{ route('veiwallproperty') }}">
+                                @csrf
+                                <input id="user_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                                <input id="role" name="role" type="hidden" value="{{ Auth::user()->role }}">
+                            
+                                <br />
+                                <div class="col-md-offset-5 col-lg-offset-5">
+                                    <div class="form-group row mb-0">
+                                        <div class="col-md-6 offset-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('View Properties') }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                              
+                               
                      </div>
                 </div>
            </div>
