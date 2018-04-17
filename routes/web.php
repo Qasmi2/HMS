@@ -38,6 +38,9 @@ Route::post('/propertyAdd', 'FrontEndPropertyController@insertProperty')->name('
 Route::get('/addroom', function () {
     return view('adminAction.add-room');
 })->name('addroom');
+
+//ADD ROOM ID to adding 
+Route::post('/addroom', 'FrontEndPropertyController@goAddRoom')->name('addroom');
 //ADD ROOM FROM DATA
 Route::post('/roomadd', 'FrontEndPropertyController@insertRoom')->name('roomadd');
 // VIEW Properties form

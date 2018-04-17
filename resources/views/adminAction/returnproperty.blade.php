@@ -25,26 +25,44 @@
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
+                                
+                                <h1>{{$success}}</h1>
                             
                             </div>
                         @endif
 
-                       
-                                 {{-- {{ Auth::user()->id }} --}}
-                                {{ Auth::user()->name }}
-                                {{ Auth::user()->role }}
-                         
-                            <h1>propery added</h1>
-                         
-                                {{-- {{Array[0]['result']->proertyType}} --}}
+                            
+                               
+                             {{$result['id']}}
+                             {{$result['propertyType']}}
+                              
+                           <br>
+                           <script type="text/javascript">
+                          
+                            </script>
+
+                            <br>
+
+                            <p id="demo"> property ID</p>
+                          
+                            
+
+                            {{-- @foreach($success[0]->id) --}}
+                                {{-- Member ID: {{ $success['id'] }}  
+                                Firstname: {{ $success['propertyType'] }} --}}
+                              
+
+                            {{-- @endforeach --}}
+
+                            {{-- {{Array[0]['result']->proertyType}} --}}
                                 {{-- {{Array[0]['prpertyName']}} --}}
                                 {{-- {{Array[0]->propertyname}} --}}
                          
-                                {{-- @foreach($data as $key => $value)
+                                {{-- @foreach($success as $key => $value)
                                     <li class="list-group-item"> {{$value->propertyType}}</li>
                                     <li class="list-group-item"> {{$value->propertyName}}</li>
-                                @endforeach
-                             --}}
+                                @endforeach --}}
+                            
                          
                                
                             

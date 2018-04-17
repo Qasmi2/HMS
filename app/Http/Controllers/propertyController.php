@@ -30,7 +30,7 @@ class propertyController extends Controller
         if($role == 'admin'){
 
             
-            $property = DB::table('properties')->where('user_id', $userID)->pluck('id');
+            $property = DB::table('properties')->where('user_id', $userID)->get();
             return response()->json( $property, 201);
 
             // $property = property::paginate(10);
@@ -129,8 +129,8 @@ class propertyController extends Controller
             $hostal->user_id = $userID;
            if($hostal->save()){
     
-            return new propertyResource($hostal);
-            //    return response()->json($hostal, 201);
+            // return new propertyResource($hostal);
+             return response()->json($hostal, 201);
             
            }
            else{

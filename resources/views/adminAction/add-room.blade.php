@@ -119,8 +119,8 @@
                                                             <option value="Hotal">get rom backend</option>
                                                             
                                                     </select> --}}
-                                                    <input id="property_id" type="text" placeholder="Enter your property id " class="form-control{{ $errors->has('property_id') ? ' is-invalid' : '' }}" name="property_id" value="{{ old('property_id') }}" required>
-
+                                                    <input id="property_id"  type="hidden"  class="form-control{{ $errors->has('property_id') ? ' is-invalid' : '' }}" name="property_id" value="{{ old('property_id') }}" required>
+                                                    {{-- <input id="roomid" name="roomid" type="hidden" value="{{$result[$i]['id']}}"> --}}
 
                                                     @if($errors->has('property_id'))
                                                         <span class="Please select the property ID ">

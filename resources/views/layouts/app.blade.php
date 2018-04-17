@@ -13,6 +13,7 @@
     <!-- Scripts -->
    
     <script src="{{ asset('js/app.js') }}" defer></script>
+
     <!-- Bootstrap CSS CDN -->
    
     <!-- Fonts -->
@@ -20,11 +21,14 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('deshboard/blog.css') }}" rel="stylesheet">
 </head>
 <body>
 
     <div id="app">
+            
         
         <nav class="navbar navbar-expand-md navbar-default navbar-laravel">
             <div class="container">
@@ -78,6 +82,7 @@
       
         
         <main class="py-4">
+                @include('flash')
             @yield('content')
         </main>
        

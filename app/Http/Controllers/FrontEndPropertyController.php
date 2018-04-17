@@ -82,29 +82,27 @@ class FrontEndPropertyController extends Controller
             $erre= json_decode($err,true);
             $result= json_decode($success,true);
         
-        // $response = curl_exec($curl);
-        // $err = curl_error($curl);
        
-       
-        // foreach ($someArray as $key => $value) {
-            // echo $value["propertyType"] . ", " . $value["propertyName"] . "<br>";
-            // echo Array.id[0];
-        // }
 
         curl_close($curl);
 
         if ($err) {
        
-        return view('error');
-        // return redirect('/errorMessage');
-        // ->with('status', $err);
+        return view('error')->with('error',$erre);
+       
         } else {
             
-        var_dump($result);
-        // exit();
         // var_dump($result);
+        // exit();
+    //    var_dump($result);
+   
+        // echo  $result[0]['id'];
+        // echo  $result[0]['propertyType'];
+       
+        // echo sizeof($result);
+        // exit();
         
-            return view('adminAction.returnproperty')->with('restult',$result);
+            return view('adminAction.showproperties')->with('result',$result);
         }
 
     }
@@ -183,30 +181,17 @@ class FrontEndPropertyController extends Controller
             $err = curl_error($curl);
             $erre= json_decode($err,true);
             $result= json_decode($success,true);
-        
-        // $response = curl_exec($curl);
-        // $err = curl_error($curl);
-       
-       
-        // foreach ($someArray as $key => $value) {
-            // echo $value["propertyType"] . ", " . $value["propertyName"] . "<br>";
-            // echo Array.id[0];
-        // }
-
+          
         curl_close($curl);
 
         if ($err) {
        
-        return view('error');
-        // return redirect('/errorMessage');
-        // ->with('status', $err);
+            return redirect()->back()->with('error','You have no permission for this page!');
+       
+       
         } else {
-            
-        var_dump($result);
-        // exit();
-        // var_dump($result);
-        
-            return view('adminAction.returnproperty')->with('restult',$result);
+            return redirect()->back()->with('success','Property Success full addedd');
+            // return view('adminAction.returnproperty')->with('result',$result);
         }
 
     }
@@ -300,14 +285,21 @@ class FrontEndPropertyController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function goAddRoom(Request $request)
     {
-        //
+        $user = Auth::user();
+        $userID = $user->id;
+        $role = $user->role; 
+
+        $roomID = $request->input('roomid');
+        
+        return view('adminAction.add-room')->with('roomId',$roomID);
+
     }
 
     /**

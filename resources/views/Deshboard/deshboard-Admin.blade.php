@@ -1,5 +1,6 @@
 {{-- @extends('Deshboard.deshboard-Admin') --}}
 @extends('layouts.app')
+@include('flash')
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 {{-- @include('Deshboard.Deshboard-sidebar-Admin') --}}
