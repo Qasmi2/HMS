@@ -9,7 +9,7 @@
                 <div class="col-md-3" id="sidebar">
                         <div class="list-group">
                           <a href="{{ route('addproperty') }}" class="list-group-item active">Add Your Properties </a>
-                          <a href="{{ route('addroom') }}" class="list-group-item">Add Rooms</a>
+                          {{-- <a href="{{ route('addroom') }}" class="list-group-item">Add Rooms</a> --}}
                           <a href="#" class="list-group-item">Booking Requests </a>
                           <a href="{{route ('viewproperties')}}" class="list-group-item">View Properties </a>
                           <a href="#" class="list-group-item">View Room </a>

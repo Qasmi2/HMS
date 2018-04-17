@@ -9,9 +9,10 @@
                 <div class="col-md-3" id="sidebar">
                         <div class="list-group">
                           <a href="{{ route('addproperty') }}" class="list-group-item active">Add Your Properties </a>
-                          <a href="{{ route('addroom') }}" class="list-group-item">Add Rooms</a>
-                          <a href="#" class="list-group-item">Booking Requests </a>
+                          {{-- <a href="{{ route('addroom') }}" class="list-group-item">Add Rooms</a> --}}
+                          
                           <a href="{{route ('viewproperties')}}" class="list-group-item">View Properties </a>
+                          <a href="#" class="list-group-item">Booking Requests </a>
                           <a href="#" class="list-group-item">View Room </a>
                           <a href="#" class="list-group-item">Booked Room </a>
                           
@@ -24,7 +25,7 @@
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
-                                {{ session('status') }}
+                                    {{ session('status') }}
                             
                             </div>
                         @endif
@@ -34,6 +35,8 @@
                                 {{ Auth::user()->name }}
                                 
                                 {{ Auth::user()->role }}
+                            <br>
+                            
                                  
                             
                                 <div class="card">     
@@ -109,26 +112,19 @@
                                                 </div>
                                             </div>
                                             <!-- get property id of this admin -->
-                                            <div class="form-group row">
-                                                    <label for="property-id " class="col-md-4 col-form-label text-md-right">{{ __('Property ID') }}</label>
-                        
+                                           
                                             <div class="col-md-6">
-                                                    {{-- <select class="form-control" name="property-id" id="property-id" >
-                                                            <option value="">Property Id  </option>
-                                                            <option value="Hostal">get probackend</option>
-                                                            <option value="Hotal">get rom backend</option>
-                                                            
-                                                    </select> --}}
-                                                    <input id="property_id"  type="hidden"  class="form-control{{ $errors->has('property_id') ? ' is-invalid' : '' }}" name="property_id" value="{{ old('property_id') }}" required>
-                                                    {{-- <input id="roomid" name="roomid" type="hidden" value="{{$result[$i]['id']}}"> --}}
+                                                   
+                                                    {{-- <input id="property_id"  type="hidden"  class="form-control{{ $errors->has('property_id') ? ' is-invalid' : '' }}" name="property_id" value="{{ old('property_id') }}" required> --}}
+                                                    <input id="property_id" name="property_id" type="hidden" value="{{$id}}">
 
                                                     @if($errors->has('property_id'))
                                                         <span class="Please select the property ID ">
                                                             <strong>{{$errors->first('property_id')}}</strong>
                                                         </span>
                                                     @endif
-                                                </div>
                                             </div>
+                                           
                                               
                                                 <br />
                                                 <div class="col-md-offset-5 col-lg-offset-5">

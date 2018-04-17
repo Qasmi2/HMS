@@ -251,23 +251,24 @@ class FrontEndPropertyController extends Controller
             ));
             $success= curl_exec($curl);
             $err = curl_error($curl);
-            $erre= json_decode($err,true);
-            $result= json_decode($success,true);
+            // $erre= json_decode($err,true);
+            // $result= json_decode($success,true);
         
         // $response = curl_exec($curl);
         // $err = curl_error($curl);
+        $code = http_response_code();
+        
 
         curl_close($curl);
 
-        if ($err) {
-       
-        var_dump($err);
-        exit();
-        // return redirect('/errorMessage');
-        // ->with('status', $err);
+        if ($code != 201) {
+            return redirect('viewproperties')->with('error','You have Some thing wrong!');
+            return redirect()->route('viewproperties')
+        ->with('error','You have no permission for this page!');
+            
+            exit();
         } else {
-        var_dump( $result);
-       exit();
+            return redirect('viewproperties')->with('success','Successful Room  addedd');
         }
 
 
@@ -290,15 +291,10 @@ class FrontEndPropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function goAddRoom(Request $request)
+    public function goAddRoom($id)
     {
-        $user = Auth::user();
-        $userID = $user->id;
-        $role = $user->role; 
 
-        $roomID = $request->input('roomid');
-        
-        return view('adminAction.add-room')->with('roomId',$roomID);
+        return view('adminAction.add-room')->with('id',$id);
 
     }
 
