@@ -32,11 +32,12 @@ class searchingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function sector($sector)
+    public function sector($id)
     {
           // $property = DB::table('properties')->get();
           
-          $property = DB::table('properties')->where('sector', $sector)->get();
+          $property = DB::table('properties')->where('sector', $id)->get();
+          
 
           return response()->json( $property, 201);
     }

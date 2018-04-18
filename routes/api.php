@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 });
 // GET Property for public views 
 Route::get('/showproperty', 'searchingController@index')->name('show');
-Route::get('/showpropertySector/{sector}', 'searchingController@sector');
+Route::get('/showpropertySector/{id}', 'searchingController@sector');
 
 //Route of the admin side
 

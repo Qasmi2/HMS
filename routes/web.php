@@ -51,6 +51,8 @@ Route::get('/viewproperties', function () {
 //ADD USER ID and Role to show all properties
 Route::post('/veiwallproperty', 'FrontEndPropertyController@getProperty')->name('veiwallproperty');
 
+//ADD USER ID and Role to show all properties
+Route::post('/search', 'FrontEndPropertyController@searchSector')->name('search');
 
 
 
