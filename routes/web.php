@@ -53,7 +53,14 @@ Route::post('/veiwallproperty', 'FrontEndPropertyController@getProperty')->name(
 
 //ADD USER ID and Role to show all properties
 Route::post('/search', 'FrontEndPropertyController@searchSector')->name('search');
+//ADD USER ID and Role to show all properties
+Route::post('/searchall', 'FrontEndPropertyController@searchAllSector')->name('searchall');
 
+//single proerty Info
+Route::get('viewproperty/{id}', 'FrontEndPropertyController@propertyinfo')->name('viewproperty');   
+
+//Get Rooms
+Route::get('viewrooms/{id}', 'FrontEndPropertyController@viewrooms')->name('viewrooms');  
 
 
 

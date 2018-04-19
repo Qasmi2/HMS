@@ -1,6 +1,7 @@
+
+
 {{-- @extends('Deshboard.deshboard-user') --}}
 @extends('layouts.app')
-@include('flash')
 @section('content')
 {{-- @include('Deshboard.Deshboard-sidebar-user') --}}
 <div class="container">
@@ -8,7 +9,7 @@
 
             <div class="col-md-3" id="sidebar">
                     <div class="list-group">
-                      <a href="http://hms.com/user" class="list-group-item active">Deshboard</a>
+                            <a href="http://hms.com/user" class="list-group-item active">Deshboard</a>
                       <a href="#" class="list-group-item">Profile view</a>
                       <a href="#" class="list-group-item">Booking Request</a>
                       
@@ -32,10 +33,10 @@
                         {{ Auth::user()->id }}
                         {{ Auth::user()->role }} --}}
                         
-                        <div class="jumbotron">
+                        {{-- <div class="jumbotron">
                                <center> <h1>Wellcome  {{ Auth::user()->name }} </h1>
                                 <p>Book Room on a one Click </p></center>
-                        </div>
+                        </div> --}}
                         
                         <div class="card">
                            <div class="card-header text-center bg-primary"><b>Searching Hostal</b></div>
@@ -152,8 +153,102 @@
                         </div>
                                   
 
-                                 
+                        <div class="panel-body">
+                            <table class="table table-bordered table-striped">
+                                <thead bgcolor="#4CAF50">
+                                    <tr>
+                                        <th>Pictures</th>
+                                        <th>Property Name</th>
+                                        <th>No. of Rooms</th>
+                                        <th>Sector</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                               
+                                {{-- {{$result[0]['id']}} 
+                                {{$result[0]['propertyType']}} --}}
+                                {{-- <h1>user interface</h1>
+{{$result[0]['id']}} 
+              {{$result[0]['propertyType']}}  
+                {{ $result[1]['id']}} 
+                 {{$result[1]['propertyType']}}
+                 <br/> --}}
+                                <tbody>
+                                        @for ($i = 0; $i < sizeof($result); $i++)
+
+                                        <tr>
+                                                   <td>Pictures</td>
+                                                  
+                                                    <td>{{$result[$i]['propertyName']}}</td>
+                                                    <td>{{$result[$i]['noOfRoom']}}</td>
+                                                    <td>{{$result[$i]['sector']}}</td>
+                                                    
+                                                    <td>
+                                                            {{-- href="{{ url('/problems/' . $problem->id . '/edit') }}" --}}
+                                                        <a href="{{ url('viewproperty/'.$result[$i]['id']) }}" class="btn btn-primary" >View Detail</a>
+                                                        {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#test">View</button> --}}
+
+                                                           
+                                                    </td>
+                                        </tr>
+                                        
+                                    @endfor
+                                    
+
+                                </tbody>
+                            </table>
+                          
+                        </div>
                                        
+
+                            <div class="modal fade bd-example-modal-lg" id="test" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header text-center">
+                                        Hostal/Hotal Name
+                                            <button type="button" class="btn btn-default right" data-dismiss="modal">Close</button>
+                                    </div>
+
+
+
+                                        <div class="row">
+                                                <div class="col-lg-6 col-md-6 ">
+                                                      <div style="background-color: aqua">
+                                                               picture
+                                                      </div>                      
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="col-lg-3 col-md-3"><label>Name:</label></div>
+                                                    <div class="col-lg-9 col-md-9"><label> <p>----</p></label></div>
+                                                    <div class="col-lg-3 col-md-3"><label>Location:</label></div>
+                                                    <div class="col-lg-9 col-md-9"><label> <p>F-8 Markaz Ialamabad</p></label></div>
+                                                    <div class="col-lg-3 col-md-3"><label>Price:</label></div>
+                                                    <div class="col-lg-9 col-md-9"><label> <p>10000/month</p></label></div>
+                                                    <div class="col-lg-3 col-md-3"><label>Description</label></div>
+                                                    <div  class="col-lg-12 col-md-12" style="background-color: antiquewhite;height: 15em; overflow: hidden;"><p style="text-align: justify; ">Detail of hostel and hotel.</p>
+                                                    
+                                                    </div>
+                                                    
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                                        <button type="button"style="    background-color: #3aa7f5;
+                                                border-radius: 20px;
+                                                box-sizing: border-box;
+                                                border-width: 1px;
+                                                font-size: 14px;
+                                                font-weight: 500;
+                                                padding: 3px 20px;
+                                                border-color: #000;
+                                                color: #080808;">Book</button>
+                                        </div>
+                                        <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                              </div>
+
+                                </div>
+                            </div>
+                            </div>
 
                     </div>
                 </div>

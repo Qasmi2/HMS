@@ -317,20 +317,148 @@ class FrontEndPropertyController extends Controller
 
         $response = curl_exec($curl);
         $err = curl_error($curl);
+        $erre= json_decode($err,true);
+        $result= json_decode($response,true);
         
         curl_close($curl);
    
         
         if ($err) {
-            var_dump($err);
-            exit();
-          echo "cURL Error #:" . $err;
-        } else {
             
-          echo $response;
+            return view('Actionuser.usershowproperties')->with('error',"NOT Available ");
+        } else {
+            // var_dump($result);
+            // exit();
+                // echo  $result[0]['id'];
+                // echo  $result[0]['propertyType'];
+                // echo  $result[1]['id'];
+                // echo  $result[1]['propertyType']; 
+                // return view('adminAction.showproperties')->with('result',$result);
+                return view('Actionuser.usershowproperties')->with('result',$result);
+          
         }
     }
 
+
+
+ /**
+     * 
+     *
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function searchAllSector()
+    {
+
+        
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "http://hms.com/api/showproperty",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "GET",
+          CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json",
+            
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        
+        curl_close($curl);
+        
+        if ($err) {
+          echo "cURL Error #:" . $err;
+        } else {
+          echo $response;
+        }
+    }
+    
+    public function propertyinfo($id)
+    {
+
+        
+        $curl = curl_init();
+        $base_url = 'http://hms.com/api/getProperty';
+        $url = $base_url . '/' . $id;
+        
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => $url,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "GET",
+          CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json",
+            
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        $erre= json_decode($err,true);
+        $result= json_decode($response,true);
+        
+        curl_close($curl);
+        
+        if ($err) {
+           
+            return view('Actionuser.vewproperty')->with('error','something wrong');
+        } else {
+            // var_dump($result);
+            // exit();
+            return view('Actionuser.vewproperty')->with('result',$result);
+        }
+    }
+    public function viewrooms($id)
+    {
+
+        
+        $curl = curl_init();
+        $base_url = 'http://hms.com/api/getRooms';
+        $url = $base_url . '/' . $id;
+       
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => $url,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "GET",
+          CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json",
+            
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        $erre= json_decode($err,true);
+        $result1= json_decode($response,true);
+        
+        curl_close($curl);
+        
+        if ($err) {
+           
+            return view('Actionuser.view-roomdetail')->with('error','something wrong');
+        } else {
+          
+            return view('Actionuser.view-roomdetail')->with('result1',$result1);
+        }
+    }
+
+   
     /**
      * 
      *
@@ -343,6 +471,7 @@ class FrontEndPropertyController extends Controller
         return view('adminAction.add-room')->with('id',$id);
 
     }
+
 
     /**
      * Update the specified resource in storage.

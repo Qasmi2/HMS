@@ -20,9 +20,9 @@ class RoomController extends Controller
     public function index($id)
     {
         
-        $userID =$request->input('user_id');
-        $role = $request->input('role');
-        if($role == 'admin'){
+        // $userID =$request->input('user_id');
+        // $role = $request->input('role');
+        // if($role == 'admin'){
 
             // $room = room::paginate(10);
             // finding property_ID of the auth user 
@@ -34,10 +34,10 @@ class RoomController extends Controller
             // return propertyResource::collection($property);
             $room = DB::table('rooms')->where('property_id','=', $id)->get();
             return response()->json($room, 201);
-        }
-        else{
-            return response()->json(['error'=>'Unauthorised amin'], 401);
-        }
+        // }
+        // else{
+        //     return response()->json(['error'=>'Unauthorised amin'], 401);
+        // }
     }
 
     /**

@@ -41,6 +41,15 @@ class searchingController extends Controller
 
           return response()->json( $property, 201);
     }
+    public function sectorall(Request $request)
+    {
+          // $property = DB::table('properties')->get();
+          
+          $property = DB::table('properties')->get();
+          
+
+          return response()->json( $property, 201);
+    }
 
     /**
      * Store a newly created resource in storage.
