@@ -44,7 +44,9 @@ Route::get('addroom/{id}', 'FrontEndPropertyController@goAddRoom')->name('addroo
 
 //passing Room ID to Add Room blade 
 Route::get('requested/{id}', 'FrontEndPropertyController@bookinginfo')->name('requested');
-
+// Confirm booking 
+//passing Room ID to Add Room blade 
+Route::get('confirm/{id}', 'FrontEndPropertyController@confirm')->name('confirm');
 //ADD ROOM FROM DATA
 Route::post('roomadd', 'FrontEndPropertyController@insertRoom')->name('roomadd');
 // VIEW Properties form
@@ -75,6 +77,8 @@ Route::get('viewproperty/{id}', 'FrontEndPropertyController@propertyinfo')->name
 
 
 Route::post('booking1', 'FrontEndPropertyController@bookingRequest')->name('booking1');
+Route::post('checkStatus', 'FrontEndPropertyController@checkStatus')->name('checkStatus');
+
 
 Route::get('booking/{id}', 'FrontEndPropertyController@bookingRequest')->name('booking');
 //Get Rooms

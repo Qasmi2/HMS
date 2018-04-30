@@ -148,27 +148,32 @@ class bookingController extends Controller
     public function update(Request $request, $id)
     {
         
-        $user = Auth::user();
-        $role = $user->role;
-        if($role == 'admin'){
+        // $user = Auth::user();
+        // $role = $user->role;
 
-            $validator = Validator::make($request->all(), [
+        // if($role == 'admin'){
+
+            // $validator = Validator::make($request->all(), [
                 
-                'status' => 'required',
+            //     'status' => 'required',
                
-            ]);
-            if ($validator->fails()) {
-                return response()->json(['error'=>$validator->errors()], 401);            
-            }
+            // ]);
+            // if ($validator->fails()) {
+            //     return response()->json(['error'=>$validator->errors()], 401);            
+            // }
 
             $booking = booking::findOrFail($id);
-            $status = $booking->status = $request->input('status');
+            $status = $booking->status = "confirm";
             if($status = 'confirm'){
-                $availibility = room::findOrFail($id);
+               
+                $room_id = DB::table('bookings')->where('id', '=', $id )->value('room_id');
+               
+                $availibility = room::findOrFail($room_id);
                 $availibility->availableRoom = 0;
                 if( $booking->update($request->all()) );
                 {
                     $availibility->update();
+                    
                     return response()->json(['Success' =>'room has been booked '],201);
                 }
                 
@@ -183,10 +188,10 @@ class bookingController extends Controller
             }
 
            
-        }
-        else{
-        return response()->json(['error'=>'Unauthorised amin'], 401);
-        }
+        // }
+        // else{
+        // return response()->json(['error'=>'Unauthorised amin'], 401);
+        // }
     }
 
     /**
@@ -200,4 +205,56 @@ class bookingController extends Controller
         
         
     }
+
+
+
+    public function status(Request $request)
+    {
+        // $user = Auth::user();
+
+        $userID =$request->input('user_id');
+        $roomID = $request->input('room_id');
+        $role = $request->input('role');
+        // var_dump($role);
+        // exit();
+            
+        if($role == 'user'){
+
+            $validator = Validator::make($request->all(), [
+                
+                'room_id' => 'required',
+                
+               
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json(['error'=>$validator->errors()], 401);            
+            }
+             
+
+            
+
+            // $booking = $request->isMethod('put') ? booking::findOrFail 
+            // ($request->booking_id) : new booking;
+
+            $book = $request->isMethod('put') ? booking::findOrFail 
+            ($request->booking_id) : new booking;
+
+            $status = DB::table('bookings')->where('user_id', '=', $userID )->value('status');
+           
+            // $booking->status="pending";
+           
+            if($status == "confirm")
+            {
+                return response()->json(['success' =>'Your Room is Booked by Hostal manager'],201);
+            }
+            else{
+                return response()->json(['success'=>'Still Pending Request  '], 201);  
+            }
+        } else{
+            return response()->json(['success'=>'unauthorized User  '], 401);  
+        }
+    }
+
+
 }

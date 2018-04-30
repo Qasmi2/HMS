@@ -1,6 +1,8 @@
 {{-- @extends('Deshboard.deshboard-Admin') --}}
 @extends('layouts.app')
+
 @section('content')
+
 {{-- @include('Deshboard.Deshboard-sidebar-Admin') --}}
 <div class="container">
     <div class="row justify-content-center">
@@ -21,14 +23,8 @@
                 <div class="card">
                     <div class="card-header">Property List</div>
 
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                               
-                            </div>
-                        @endif
-    
+                     <div class="card-body">
+                        
                              <!-- main content -->
 
                              <section class="content">
@@ -46,9 +42,11 @@
                                                     <table class="table table-bordered table-striped">
                                                         <thead bgcolor="#4CAF50">
                                                             <tr>
-                                                                <th>Booking Room ID</th>
+                                                                {{-- <th>Booking Room ID</th> --}}
                                                                 <th> Room Type </th>
                                                                 <th> Room Name </th>
+                                                                <th>Price</th>
+                                                                <th> </th>
                                                             </tr>
                                                         </thead>
                                                        
@@ -58,9 +56,13 @@
                                                         @for ($i = 0; $i < sizeof($result); $i++)
                                                                 <tr> 
                                                                
-                                                                <td> {{$result[$i]['id']}} </td>
+                                                                {{-- <td> {{$result[$i]['id']}} </td> --}}
                                                                 <td>  {{$result[$i]['roomType']}} </td>
                                                                 <td>  {{$result[$i]['NameOfRoom']}} </td>
+                                                                <td>  {{$result[$i]['price']}} </td>
+                                                                <td>
+                                                                        <a href="{{url('confirm/'.$result[$i]['id'])}}" class="btn btn-primary" >Confirm Booking </a>
+                                                                </td>
                                                                 </tr>
                                                                 
                                                         @endfor

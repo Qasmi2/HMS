@@ -716,6 +716,50 @@ class FrontEndPropertyController extends Controller
         }
     }
 
+
+    public function confirm($id)
+    {
+        
+        $curl = curl_init();
+        $base_url = 'http://hms.com/api/booked';
+        $url = $base_url . '/' . $id;
+       
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => $url,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "PUT",
+          CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: application/json",
+            
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        $erre= json_decode($err,true);
+        $result1= json_decode($response,true);
+        
+        curl_close($curl);
+        
+        if ($err) {
+           
+            return redirect()->back()->with('error','not booked');
+        } else {
+          
+            return redirect()->back()->with('success','Successfull  Confirm Booked ');
+        }
+    }
+
+
+
+
+
+
    
     /**
      * 
@@ -818,6 +862,82 @@ class FrontEndPropertyController extends Controller
         } else {
             
             return redirect()->back()->with('success','Your Request has been noted, we will contact soon!');
+            // return view('adminAction.returnproperty')->with('result',$result);
+        }
+
+    }
+
+
+
+
+
+
+    public function checkStatus(Request $request)
+    {
+        
+        
+        $user = Auth::user();
+        $userID = $user->id;
+        $role = $user->role; 
+        
+
+        $validator = Validator::make($request->all(), [
+                
+            'room_id' => 'required',
+           
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+        
+        $property['user_id'] = $request->input('user_id');
+        $property['room_id'] = $request->input('room_id');
+        
+       
+        $property['role'] = $role;
+        // var_dump($property);
+        // exit();
+        
+            
+           
+        $curl = curl_init();
+           
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://hms.com/api/status",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30000,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode($property),
+            CURLOPT_HTTPHEADER => array(
+                // Set here requred headers
+                "accept: */*",
+                "accept-language: en-US,en;q=0.8",
+                "content-type: application/json",
+                // 'Authorization' => 'Bearer '.csrf_field(),
+               
+                
+            ),
+        ));
+            $success= curl_exec($curl);
+            $err = curl_error($curl);
+            $erre= json_decode($err,true);
+            $result= json_decode($success,true);
+        //    var_dump($result);
+        //    exit();
+       
+
+        if ($err) {
+       
+            return redirect()->back()->with('error','something Wrong');
+       
+       
+        } else {
+            
+            return redirect()->back()->with('success',"Please Contact with the HOSTEL/HOTEL MANAGER for more detail aobut your Booking");
             // return view('adminAction.returnproperty')->with('result',$result);
         }
 

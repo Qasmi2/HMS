@@ -54,8 +54,11 @@ Route::get('/showpropertyUniversity/{id}', 'searchingController@univerity');
     // Route::put('booked/{id}','roomController@update');
 
     Route::post('booking','bookingController@store');
+    Route::post('status','bookingController@status');
     Route::put('booked/{id}','bookingController@update');
     Route::get('request/{id}','bookingController@show');
+
+   
 // });
 
 //Route::group(['middleware' => 'auth:api'], function(){

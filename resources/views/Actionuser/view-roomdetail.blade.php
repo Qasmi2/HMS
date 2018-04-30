@@ -9,9 +9,9 @@
 
             <div class="col-md-3" id="sidebar">
                     <div class="list-group">
-                    <a href="http://hms.com/user" class="list-group-item active">Deshboard</a>
-                      <a href="#" class="list-group-item">Profile view</a>
-                      <a href="#" class="list-group-item">Booking Request</a>
+                    <a href="http://hms.com/user" class="list-group-item active">HOME</a>
+                      {{-- <a href="#" class="list-group-item">Booking status </a> --}}
+                      
                       
                       
                     </div>
@@ -48,7 +48,8 @@
                                                     <th>Room Type</th>
                                                     <th>Price</th>
                                                     <th>Available</th>
-                                                    <th>Actions</th>
+                                                    <th>Booking</th>
+                                                    <th>Booking Status</th>
                                                 </tr>
                                             </thead>
                                            
@@ -64,7 +65,14 @@
                                                                 <td>{{$result1[$i]['NameOfRoom']}}</td>
                                                                 <td>{{$result1[$i]['roomType']}}</td>
                                                                 <td>{{$result1[$i]['price']}}</td>
-                                                                <td>{{$result1[$i]['availableRoom']}}</td>
+                                                                @if($result1[$i]['availableRoom'] == 1 )
+                                                                <td>Yes</td>
+   
+                                                                @endif
+                                                                @if($result1[$i]['availableRoom'] == 0 )
+                                                                <td> Booked </td>
+   
+                                                                @endif
                                                                 
                                                                 <td>
                                                               
@@ -88,6 +96,28 @@
                                                             </form> 
 
                                                                 </td>
+                                                                <td>
+                                                              
+
+                                                                        @if (Auth::check()) 
+         
+                                                                         <form method="POST" action="{{ route('checkStatus')}}">
+                                                                             
+                                                                                 @csrf
+                                                                                <input id="user_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                                                                                <input id="role" name="role" type="hidden" value="{{ Auth::user()->role }}">
+                                                                                <input id="room_id" name="room_id" type="hidden" value="{{$result1[$i]['id']}}">
+                                             
+                                                                                
+                                                                           
+                                                                             <button type="submit" class="btn btn-primary">
+                                                                                     {{ __('Booking Status') }}
+                                                                                 </button>
+                                                                         
+                                                                         @endif
+                                                                     </form> 
+         
+                                                                         </td>
                                                     </tr>
                                                     
                                                 @endfor
