@@ -36,8 +36,10 @@ class FrontEndController extends Controller
         ]);
 
         if ($validator->fails()) {
-            // return response()->json(['error'=>$validator->errors()], 401);           
-            return view('main-page')->with($validator); 
+
+             return redirect()->back()->with('error','Please Fill the Form Carefull, All the Field are requrired ');
+            //  return response()->json(['error'=>$validator->errors()], 401);           
+            
         }
 
      
@@ -94,8 +96,9 @@ class FrontEndController extends Controller
         // return view('error')->with('erre' , $erre);
         //     } else {
        
-            return view('error')->with($result);
+            // return view('error')->with($result);
             
+            return redirect()->back()->with('success','Successfull Registered ');
             // return  array($result);
             // return Redirect::to('/')->with('message', 'Successfull Register');
             

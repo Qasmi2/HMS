@@ -99,22 +99,94 @@ class RoomController extends Controller
                 if($Room->save()){
     
                     // return new propertyResource($hostal);
-                       return response()->json($Room, 201);
+                    return response()->json(['success'=>'Successsfully Added room'], 401);
                     
                    }
                    else{
-                    return response()->json(['error'=>'Something wrong Not Save into database'], 401);
+                    return response()->json(['success'=>'Something wrong Not Save into database'], 401);
                 }
             }else{
              
-                return response()->json(['error'=>'No of Room of your Property have been completed'], 401);
+                return response()->json(['success'=>'No of Room of your Property have been completed'], 401);
 
             }
         }
         else{
-            return response()->json(['error'=>'Unauthorised amin'], 401);
+            return response()->json(['success'=>'Unauthorised amin'], 401);
         }
     }
+
+  // Booking room function 
+
+
+   /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * store the room of the property of the admin 
+     */
+    public function booking(Request $request)
+    {
+        
+        $role = $request->input('role');
+        var_dump($role);
+        exit();
+       
+        if($role == 'admin'){
+
+            $validator = Validator::make($request->all(), [
+                'roomType' => 'required',
+                'NameOfRoom' => 'required',
+                'price' => 'required',
+                'availableRoom' => 'required',
+                'property_id' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['error'=>$validator->errors()], 401);            
+            }
+
+            $Room = $request->isMethod('put') ? room::findOrFail 
+            ($request->room_id) : new room;
+
+            $Room->roomType = $request->input('roomType');
+            $Room->NameOfRoom = $request->input('NameOfRoom');
+            $Room->price = $request->input('price');
+            $Room->availableRoom = $request->input('availableRoom');
+            // $Room->bookedRoom = $request->input('bookedRoom');
+            $propertyId = $Room->property_id  = $request->input('property_id');
+            
+            
+            $noOfRoom = DB::table('properties')->where('id', '=', $propertyId )->value('noOfRoom');
+            $room = DB::table('rooms')->where('property_id','=', $propertyId)->pluck('id')->count();
+            
+            if($room < $noOfRoom)
+            {
+                if($Room->save()){
+    
+                    // return new propertyResource($hostal);
+                    return response()->json(['success'=>'Successsfully Added room'], 401);
+                    
+                   }
+                   else{
+                    return response()->json(['success'=>'Something wrong Not Save into database'], 401);
+                }
+            }else{
+             
+                return response()->json(['success'=>'No of Room of your Property have been completed'], 401);
+
+            }
+        }
+        else{
+            return response()->json(['success'=>'Unauthorised amin'], 401);
+        }
+    }
+
+    // End Booking Room
+    
+
+
 
     /**
      * Display the specified resource.

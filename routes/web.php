@@ -21,46 +21,66 @@ Route::get('/reg', function () {
     return view('auth.register');
 })->name('reg');
 //REGISTERAION FORM DATA PASS TO CONTROLLER 
-Route::post('/regis', 'FrontEndController@getregisters')->name('regis');
+Route::post('regis', 'FrontEndController@getregisters')->name('regis');
 //LOGIN PAGE
-Route::get('/logi', function () {
+Route::get('logi', function () {
     return view('auth.login');
 })->name('logi');
 //LOGIN FORM DATA PASS TO CONTROLLER 
-Route::post('/log', 'FrontEndController@getLogin')->name('log');
+Route::post('log', 'FrontEndController@getLogin')->name('log');
 //ADD PROPERTY 
-Route::get('/addproperty', function () {
+Route::get('addproperty', function () {
     return view('adminAction.add-property');
 })->name('addproperty');
 //ADD PROPERTY FROM DATA
-Route::post('/propertyAdd', 'FrontEndPropertyController@insertProperty')->name('propertyAdd');
+Route::post('propertyAdd', 'FrontEndPropertyController@insertProperty')->name('propertyAdd');
 //ADD ROOM
-Route::get('/addroom', function () {
+Route::get('addroom', function () {
     return view('adminAction.add-room');
 })->name('addroom');
 
 //passing Room ID to Add Room blade 
 Route::get('addroom/{id}', 'FrontEndPropertyController@goAddRoom')->name('addroom');
 
+//passing Room ID to Add Room blade 
+Route::get('requested/{id}', 'FrontEndPropertyController@bookinginfo')->name('requested');
+
 //ADD ROOM FROM DATA
-Route::post('/roomadd', 'FrontEndPropertyController@insertRoom')->name('roomadd');
+Route::post('roomadd', 'FrontEndPropertyController@insertRoom')->name('roomadd');
 // VIEW Properties form
-Route::get('/viewproperties', function () {
+Route::get('viewproperties', function () {
     return view('adminAction.view-properties');
 })->name('viewproperties');
 //ADD USER ID and Role to show all properties
-Route::post('/veiwallproperty', 'FrontEndPropertyController@getProperty')->name('veiwallproperty');
+Route::post('veiwallproperty', 'FrontEndPropertyController@getProperty')->name('veiwallproperty');
 
 //ADD USER ID and Role to show all properties
-Route::post('/search', 'FrontEndPropertyController@searchSector')->name('search');
+Route::post('search', 'FrontEndPropertyController@searchSector')->name('search');
+
+Route::post('searchfront', 'FrontEndPropertyController@searchSectorFront')->name('searchfront');
+
+//SERARCH BY UNIVER
+
+Route::post('searchuni', 'FrontEndPropertyController@searchuni')->name('searchuni');
+
+
 //ADD USER ID and Role to show all properties
-Route::post('/searchall', 'FrontEndPropertyController@searchAllSector')->name('searchall');
+Route::post('searchall', 'FrontEndPropertyController@searchAllSector')->name('searchall');
 
 //single proerty Info
 Route::get('viewproperty/{id}', 'FrontEndPropertyController@propertyinfo')->name('viewproperty');   
 
+//booking Request get user data
+// Route::get('checkAuth/{id}', 'FrontEndPropertyController@bookingRequest')->name('checkAuth');   
+
+
+Route::post('booking1', 'FrontEndPropertyController@bookingRequest')->name('booking1');
+
+Route::get('booking/{id}', 'FrontEndPropertyController@bookingRequest')->name('booking');
 //Get Rooms
 Route::get('viewrooms/{id}', 'FrontEndPropertyController@viewrooms')->name('viewrooms');  
+
+// Booking Room 
 
 
 

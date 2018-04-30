@@ -8,7 +8,7 @@
 
             <div class="col-md-3" id="sidebar">
                     <div class="list-group">
-                      <a href="http://hms.com/user" class="list-group-item active">Deshboard</a>
+                      <a href="http://hms.com/" class="list-group-item active">Deshboard</a>
                       <a href="#" class="list-group-item">Profile view</a>
                       <a href="#" class="list-group-item">Booking Request</a>
                       
@@ -42,13 +42,12 @@
                            <br /><br/>
                            
                            
-                           <form method="POST" action="{{ route('search') }}">
+                           <form method="POST" action="{{ route('searchfront') }}">
                                 @csrf
                                 <input id="user_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}">
                                 <input id="role" name="role" type="hidden" value="{{ Auth::user()->role }}">
                                 <div class="form-group row">
-                                                <label for="sector" class="col-md-4 col-form-label text-md-right">{{ __('Search') }}</label>
-                                                
+                                            <label for="sector" class="col-md-4 col-form-label text-md-right">{{ __('Search') }}</label>
                                                 <div class="col-md-6">
                                                     <select class="form-control" name="sector" id="sector" >
                                                         <option value="">Select Sector</option>
@@ -128,6 +127,10 @@
                                                         <option value="I-16,Islamabad">I-16, Islamabad</option>
                                                         <option value="I-17,Islamabad">I-17, Islamabad</option>
                                                         <option value="I-18,Islamabad">I-18, Islamabad</option>
+                                                        <option value = "khanapull">Khana Pull </option>
+                                                                <option value="margallatown">Margalla Town</option>
+                                                                <option value="tarmari">Tarmari</option>
+                                                                <option value="alipur">Ali-Pur</option>
                                                     </select>
                                                     @if($errors->has('sector'))
                                                         <span class="Please Select a sector">

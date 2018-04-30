@@ -12,6 +12,7 @@
                           {{-- <a href="{{ route('addroom') }}" class="list-group-item">Add Rooms</a> --}}
                           <a href="{{route ('viewproperties')}}" class="list-group-item">Booking Requests </a>
                           <a href="{{route ('viewproperties')}}" class="list-group-item">View Properties </a>
+                         
                           <!-- <a href="#" class="list-group-item">View Room </a>
                           <a href="#" class="list-group-item">Booked Room </a> -->
                           
@@ -24,50 +25,24 @@
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
-                                {{ session('status') }}
-                                
-                                <h1>{{$success}}</h1>
+                                    {{ session('status') }}
                             
                             </div>
                         @endif
-
-                            
-                               
-                             {{$result['id']}}
-                             {{$result['propertyType']}}
-                              
-                           <br>
-                           <script type="text/javascript">
-                          
-                            </script>
-
+                            <div class="alert alert-info">
+                                {{$result['success']}}
+                            </div>
+                       
+                
                             <br>
-
-                            <p id="demo"> property ID</p>
-                          
                             
-
-                            {{-- @foreach($success[0]->id) --}}
-                                {{-- Member ID: {{ $success['id'] }}  
-                                Firstname: {{ $success['propertyType'] }} --}}
-                              
-
-                            {{-- @endforeach --}}
-
-                            {{-- {{Array[0]['result']->proertyType}} --}}
-                                {{-- {{Array[0]['prpertyName']}} --}}
-                                {{-- {{Array[0]->propertyname}} --}}
-                         
-                                {{-- @foreach($success as $key => $value)
-                                    <li class="list-group-item"> {{$value->propertyType}}</li>
-                                    <li class="list-group-item"> {{$value->propertyName}}</li>
-                                @endforeach --}}
+                                 
                             
-                         
-                               
-                            
-                           
                                 
+                               </div> 
+                                    
+                              
+                               
                      </div>
                 </div>
            </div>

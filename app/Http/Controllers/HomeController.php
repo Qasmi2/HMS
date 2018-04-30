@@ -46,7 +46,8 @@ class HomeController extends Controller
     public function deshboardUser()
     {
         
-        return view('Deshboard.deshboard-user');
+        // return view('Deshboard.deshboard-user');
+        return view('main-page');
     }
 
 

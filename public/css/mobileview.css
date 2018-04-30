@@ -1,0 +1,18 @@
+
+@media screen and (max-width: 600px) {
+
+    .mobile-view{
+    display:none;
+    }
+
+    .features{
+        margin-left: 0;
+    }
+
+}
+@media screen and (min-width: 992px) {
+.features{
+    margin-left:260px;
+}
+
+}

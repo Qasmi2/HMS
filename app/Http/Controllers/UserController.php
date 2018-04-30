@@ -58,7 +58,8 @@ class UserController extends Controller
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
 
-        return response()->json($success,201, $this->successStatus);
+        //return response()->json($success,201, $this->successStatus);
+        return response()->json(['success'=>'Successfully Registered'], 401);
     }
 
     /**

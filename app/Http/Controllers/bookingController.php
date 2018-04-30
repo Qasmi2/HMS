@@ -40,9 +40,13 @@ class bookingController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-        $userID = $user->id;
-        $role = $user->role;
+        // $user = Auth::user();
+
+        $userID =$request->input('user_id');
+        $roomID = $request->input('room_id');
+        $role = $request->input('role');
+         
+            
         if($role == 'user'){
 
             $validator = Validator::make($request->all(), [
@@ -56,22 +60,31 @@ class bookingController extends Controller
                 return response()->json(['error'=>$validator->errors()], 401);            
             }
              
-            $booking = $request->isMethod('put') ? booking::findOrFail 
-            ($request->booking_id) : new booking;
-            $status="pending";
-            $booking->status =  $status;
-            $booking->user_id = $userID;
-            $booking->room_id = $request->input('room_id');
+
             
-            if($booking->save())
+
+            // $booking = $request->isMethod('put') ? booking::findOrFail 
+            // ($request->booking_id) : new booking;
+
+            $book = $request->isMethod('put') ? booking::findOrFail 
+            ($request->booking_id) : new booking;
+           
+            @$status = "pending";
+            $book->status = $status;
+            $book->user_id = $request->input('user_id');
+            $book->room_id = $request->input('room_id');
+
+            // $booking->status="pending";
+           
+            if($book->save())
             {
-                return response()->json(['Success' =>'Your request has been recorded we will contect soon'],201);
+                return response()->json(['success' =>'Your request has been recorded we will contect soon'],201);
             }
             else{
-                return response()->json(['error'=>'Room data  inserting error  '], 401);  
+                return response()->json(['success'=>'Room data  inserting error  '], 401);  
             }
         } else{
-            return response()->json(['error'=>'unauthorized User  '], 401);  
+            return response()->json(['success'=>'unauthorized User  '], 401);  
         }
     }
 
@@ -81,9 +94,37 @@ class bookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($propertyid)
     {
-        //
+        // $property = DB::table('properties')->where('user_id', $id)->get();
+        // //  $propertyID = DB::select('select id FROM properties WHERE user_id = $id');
+        // $proer = DB::select('select id.rooms, from rooms');
+       // $rooms = DB::table('rooms')->where('property_id', $id)->get();
+        //  $room = DB::table('rooms')->where('property_id','=', $propertyid)->pluck('id');
+        //  $bookedRoom = DB::select('SELECT bookings.room_id FROM bookings INNER JOIN rooms ON bookings.room_id = $room');
+        // $bookedRoom = DB::select(' SELECT room_id FROM bookings where EXISTS (select id FROM rooms where property_id = 1)');
+        //$bookedRoom = DB::table('bookings')->where('property_id', $id)->get();
+        //$bookedRoom = DB::table('rooms','bookings')->where('rooms.property_id', $propertyid and 'bookings.room_id', 'rooms.id')->get();
+        $x =  DB::table('bookings')->select('room_id')->get();
+        $d=[];
+        foreach($x as $xs)
+        {
+            $d[] = $xs->room_id; 
+
+        }
+        $bookedRoom = DB::table('rooms')->where('rooms.property_id', $propertyid) ->wherein('rooms.id', $d)
+        ->get();
+        
+        
+//select * from rooms where rooms.property_id = 1 and rooms.id NOT IN(select bookings.room_id from bookings)
+        //select * from rooms, bookings where rooms.property_id = 1 and bookings.room_id= rooms.id
+
+    //     var_dump( $bookedRoom );
+    //    exit();
+        // $bookedRoom = DB::select('select room_id From bookings')->where('select id from rooms where property_id', '=', $propertyid )->get();
+        // var_dump($bookedRoom);
+        // exit();
+        return response()->json($bookedRoom, 201);
     }
 
     /**
@@ -140,6 +181,7 @@ class bookingController extends Controller
                 }
                 
             }
+
            
         }
         else{

@@ -1,7 +1,7 @@
 
 {{-- @extends('Deshboard.deshboard-user') --}}
 @extends('layouts.app')
-@include('flash')
+
 @section('content')
 {{-- @include('Deshboard.Deshboard-sidebar-user') --}}
 <div class="container">
@@ -28,18 +28,18 @@
                             
                             </div>
                         @endif
-
-                        
                        
-                                  
-                        
-                    
-                        
-                                
+                          @if(!Auth::check())
+                            <div class="alert alert-info">
+                            
+                                 To Room Booking you have to Register/login 
+                                 <a href="http://hms.com/reg">Register</a>
+                            </div>
+                          @endif
                         <div class="card" >
                                 <div class="card-header bg-success">Rooms Details</div>   
                                 
-                                <div class="panel-body">
+                                <div class="panel-body table-responsive">
                                         <table class="table table-bordered table-striped">
                                             <thead bgcolor="#4CAF50">
                                                 <tr>
@@ -67,8 +67,26 @@
                                                                 <td>{{$result1[$i]['availableRoom']}}</td>
                                                                 
                                                                 <td>
-                                                                    <a href="*" class="btn btn-primary" >Booking</a>
+                                                              
+
+                                                               @if (Auth::check()) 
+
+                                                                <form method="POST" action="{{ route('booking1')}}">
+                                                                    
+                                                                        @csrf
+                                                                       <input id="user_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                                                                       <input id="role" name="role" type="hidden" value="{{ Auth::user()->role }}">
+                                                                       <input id="room_id" name="room_id" type="hidden" value="{{$result1[$i]['id']}}">
+                                    
                                                                        
+                                                                  
+                                                                    <button type="submit" class="btn btn-primary">
+                                                                            {{ __('Booking Request') }}
+                                                                        </button>
+                                                                
+                                                                @endif
+                                                            </form> 
+
                                                                 </td>
                                                     </tr>
                                                     

@@ -20,9 +20,10 @@ class CreatePropertiesTable extends Migration
             $table->integer('noOfRoom')->unsigned();
             $table->string('streetAddress');
             $table->string('sector');
-            $table->double('Latitude')->nullable();
-            $table->double('Longitude')->nullable();
+            $table->double('lat')->nullable();
+            $table->double('lon')->nullable();
             $table->string('city');
+            $table->string('phoneNo');
             $table->tinyInteger('internet')->nullable();
             $table->tinyInteger('parking')->nullable();
             $table->tinyInteger('mess')->nullable();
@@ -30,7 +31,19 @@ class CreatePropertiesTable extends Migration
             $table->tinyInteger('RoomCleaning')->nullable();
             $table->tinyInteger('lundary')->nullable();
             $table->tinyInteger('cctvCamear')->nullable();
-    
+
+            $table->tinyInteger('AirConditioning')->nullable();
+            $table->tinyInteger('IroningFacilities')->nullable();
+            $table->tinyInteger('PrivateBathroom')->nullable();
+            $table->tinyInteger('Refrigerator')->nullable();
+            $table->tinyInteger('Telephone')->nullable();
+            $table->tinyInteger('AirportShuttle')->nullable();
+            $table->tinyInteger('Wardrobe')->nullable();
+            $table->tinyInteger('Towels')->nullable();
+            $table->tinyInteger('Heating')->nullable();
+            $table->tinyInteger('Restaurant')->nullable();
+            $table->tinyInteger('Shower')->nullable();
+            $table->binary('pic');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -43,7 +43,7 @@
                            <br /><br/>
                            
                            
-                           <form method="POST" action="{{ route('search') }}">
+                           <form method="POST" action="{{ route('searchfront') }}">
                                 @csrf
                                 <input id="user_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}">
                                 <input id="role" name="role" type="hidden" value="{{ Auth::user()->role }}">
@@ -129,6 +129,10 @@
                                                         <option value="I-16,Islamabad">I-16, Islamabad</option>
                                                         <option value="I-17,Islamabad">I-17, Islamabad</option>
                                                         <option value="I-18,Islamabad">I-18, Islamabad</option>
+                                                        <option value = "khanapull">Khana Pull </option>
+                                                                <option value="margallatown">Margalla Town</option>
+                                                                <option value="tarmari">Tarmari</option>
+                                                                <option value="alipur">Ali-Pur</option>
                                                     </select>
                                                     @if($errors->has('sector'))
                                                         <span class="Please Select a sector">
@@ -153,7 +157,7 @@
                         </div>
                                   
 
-                        <div class="panel-body">
+                        <div class="panel-body table-responsive">
                             <table class="table table-bordered table-striped">
                                 <thead bgcolor="#4CAF50">
                                     <tr>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\propertyResource;
+use Illuminate\Support\Facades\Input;
 use App\property;
 use Validator;
 use DB;
@@ -99,25 +100,38 @@ class propertyController extends Controller
                 'streetAddress' => 'required',
                 'sector' => 'required',
                 'city' =>'required',
+               
             ]);
     
             if ($validator->fails()) {
                 return response()->json(['error'=>$validator->errors()], 401);            
             }
 
+         
+            
 
+                
+    
+                 
+    
+      
+        
             $hostal = $request->isMethod('put') ? property::findOrFail 
             ($request->property_id) : new property;
-           
+
+
+            
+            $hostal->pic = $request->input('pic');
             $hostal->id = $request->input('property_id');
             $hostal->propertyType = $request->input('propertyType');
             $hostal->propertyName = $request->input('propertyName');
             $hostal->noOfRoom = $request->input('noOfRoom');
             $hostal->streetAddress = $request->input('streetAddress');
             $hostal->sector = $request->input('sector');
-            $hostal->Latitude = $request->input('Latitude');
-            $hostal->Longitude = $request->input('Longitude');
+            $hostal->lat = $request->input('lat');
+            $hostal->lon = $request->input('lon');
             $hostal->city = $request->input('city');
+            $hostal->phoneNo = $request->input('phoneNo');
             $hostal->internet = $request->input('internet');
             $hostal->parking = $request->input('parking');
             $hostal->mess = $request->input('mess');
@@ -125,16 +139,32 @@ class propertyController extends Controller
             $hostal->RoomCleaning = $request->input('RoomCleaning');
             $hostal->lundary = $request->input('lundary');
             $hostal->cctvCamear = $request->input('cctvCamear');
-
+            $hostal->AirConditioning = $request->input('AirConditioning');
+            $hostal->IroningFacilities = $request->input('IroningFacilities');
+            $hostal->PrivateBathroom = $request->input('PrivateBathroom');
+            $hostal->Refrigerator = $request->input('Refrigerator');
+            $hostal->Telephone = $request->input('Telephone');
+            $hostal->AirportShuttle = $request->input('AirportShuttle');
+            $hostal->Wardrobe = $request->input('Wardrobe');
+            $hostal->Towels = $request->input('Towels');
+            $hostal->Heating = $request->input('Heating');
+            $hostal->Restaurant = $request->input('Restaurant');
+            $hostal->Shower = $request->input('Shower');
+            
             $hostal->user_id = $userID;
+            
+       
+
+        
+        
            if($hostal->save()){
     
             // return new propertyResource($hostal);
-             return response()->json($hostal, 201);
+             return response()->json(['error'=>'added successfully'], 401);
             
            }
            else{
-            return response()->json(['error'=>'Something wrong Not Save into database'], 401);
+            return response()->json(['error'=>'All the field are required (Enter all the field ).Something wrong Not Save into database '], 401);
         }
 
         }

@@ -30,10 +30,6 @@
                         @endif
 
                        
-                                 {{-- {{ Auth::user()->id }} --}}
-                                {{ Auth::user()->name }}
-                                
-                                {{ Auth::user()->role }}
 
                                 <form method="POST" action="{{ route('veiwallproperty') }}">
                                 @csrf

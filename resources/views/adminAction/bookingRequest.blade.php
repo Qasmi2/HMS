@@ -43,41 +43,27 @@
                                                 </div>
                                                 <br />
                                                 <div class="panel-body table-responsive">
-                                                  
                                                     <table class="table table-bordered table-striped">
                                                         <thead bgcolor="#4CAF50">
                                                             <tr>
-                                                                <th>Id</th>
-                                                                <th>Property Name</th>
-                                                                <th>No. of Rooms</th>
-                                                                <th>Sector</th>
-                                                                <th>Actions</th>
+                                                                <th>Booking Room ID</th>
+                                                                <th> Room Type </th>
+                                                                <th> Room Name </th>
                                                             </tr>
                                                         </thead>
                                                        
-                                                        {{-- {{$result[0]['id']}} 
-                                                        {{$result[0]['propertyType']}} --}}
+                                                      
                                                         
                                                         <tbody>
-                                                                @for ($i = 0; $i < sizeof($result); $i++)
-
-                                                                <tr>
-                                                                           <td>{{$result[$i]['id']}}</td>
-                                                                        
-                                                                            <td>{{$result[$i]['propertyName']}}</td>
-                                                                            <td>{{$result[$i]['noOfRoom']}}</td>
-                                                                            <td>{{$result[$i]['sector']}}</td>
-                                                                            
-                                                                            <td>
-                                                                                <a href="{{url('addroom/'.$result[$i]['id'])}}" class="btn btn-primary" >Add Room</a>
-                                                                                   
-                                                                                <a href="{{url('requested/'.$result[$i]['id'])}}" class="btn btn-primary" >Booking requesteds</a>
-                                                                            </td>
+                                                        @for ($i = 0; $i < sizeof($result); $i++)
+                                                                <tr> 
+                                                               
+                                                                <td> {{$result[$i]['id']}} </td>
+                                                                <td>  {{$result[$i]['roomType']}} </td>
+                                                                <td>  {{$result[$i]['NameOfRoom']}} </td>
                                                                 </tr>
                                                                 
-                                                            @endfor
-                                                            
-        
+                                                        @endfor
                                                         </tbody>
                                                     </table>
                                                   

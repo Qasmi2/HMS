@@ -1,10 +1,12 @@
 {{-- @extends('Deshboard.deshboard-Admin') --}}
 @extends('layouts.app')
+@include('flash')
 @section('content')
 {{-- @include('Deshboard.Deshboard-sidebar-Admin') --}}
 <div class="container">
     <div class="row justify-content-center">
-        
+
+                    
 
                 <div class="col-md-3" id="sidebar">
                         <div class="list-group">
@@ -25,49 +27,18 @@
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
-                                
-                                <h1>{{$success}}</h1>
                             
                             </div>
                         @endif
 
-                            
-                               
-                             {{$result['id']}}
-                             {{$result['propertyType']}}
-                              
-                           <br>
-                           <script type="text/javascript">
-                          
-                            </script>
-
-                            <br>
-
-                            <p id="demo"> property ID</p>
-                          
-                            
-
-                            {{-- @foreach($success[0]->id) --}}
-                                {{-- Member ID: {{ $success['id'] }}  
-                                Firstname: {{ $success['propertyType'] }} --}}
-                              
-
-                            {{-- @endforeach --}}
-
-                            {{-- {{Array[0]['result']->proertyType}} --}}
-                                {{-- {{Array[0]['prpertyName']}} --}}
-                                {{-- {{Array[0]->propertyname}} --}}
-                         
-                                {{-- @foreach($success as $key => $value)
-                                    <li class="list-group-item"> {{$value->propertyType}}</li>
-                                    <li class="list-group-item"> {{$value->propertyName}}</li>
-                                @endforeach --}}
-                            
-                         
-                               
-                            
-                           
+                       
+                        <div class="alert alert-info">
+                            {{$result['error']}}
+                        </div>
+                   
                                 
+                       
+                                  
                      </div>
                 </div>
            </div>

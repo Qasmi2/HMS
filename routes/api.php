@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 // GET Property for public views 
 Route::get('/showproperty', 'searchingController@index');
 Route::get('/showpropertySector/{id}', 'searchingController@sector');
+Route::get('/showpropertyUniversity/{id}', 'searchingController@univerity');
 // Route::post('/showpropertySector', 'searchingController@sectorall');
 //Route of the admin side
 
@@ -48,13 +49,19 @@ Route::get('/showpropertySector/{id}', 'searchingController@sector');
     Route::post('createRoom','roomController@store');
     Route::put('updatedRoom/{id}','roomController@update');
     Route::delete('deleteRoom/{id}','roomController@destroy');
-// });
 
-Route::group(['middleware' => 'auth:api'], function(){
+    // Route::post('booking','roomController@booking');
+    // Route::put('booked/{id}','roomController@update');
 
     Route::post('booking','bookingController@store');
     Route::put('booked/{id}','bookingController@update');
-});
+    Route::get('request/{id}','bookingController@show');
+// });
+
+//Route::group(['middleware' => 'auth:api'], function(){
+
+    
+//});
 
 
 

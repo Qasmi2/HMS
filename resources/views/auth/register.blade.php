@@ -1,7 +1,17 @@
 @extends('layout.master')
-
+@include('flash')
 @section('content')
 <br>
+<div class="card-body">
+        @if (session('status'))
+            <div class="alert alert-info">
+                {{ session('status') }}
+            
+            </div>
+        @endif
+          
+     </div>
+    
 <div class="col-md-offset-2 col-lg-offset-2 col-xs-12 col-sm-12">
 <div class="container">
         
@@ -73,7 +83,7 @@
                             <div class="col-md-6">
                                 <select class="form-control" name="role" id="role" >
                                         <option value="">Select a Role</option>
-                                        <option value="admin">Admin</option>
+                                        <option value="admin">Hotel Manager</option>
                                         <option value="user">User</option>
                                 </select>
                                 {{-- <input id="role" type="text" class="form-control" name="role" required> --}}

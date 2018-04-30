@@ -13,8 +13,11 @@ class property extends Model
      * @var array
      */
     protected $fillable = [
-        'propertyType', 'propertyName', 'noOfRoom','streetAddress','sector','Latitude','Longitude','city','user_id',
+        'propertyType', 'propertyName', 'noOfRoom','streetAddress','sector','lat','lon','city','phoneNo','user_id',
         'internet','parking','mess','TvCabel','RoomCleaning','lundary','cctvCamear',
+        'AirConditioning','IroningFacilities',
+        'PrivateBathroom','Refrigerator','Telephone','AirportShuttle','Wardrobe','Towels','Heating',
+        'Restaurant','Shower','pic',
     ];
 
     /**

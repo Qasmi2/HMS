@@ -10,10 +10,10 @@
                         <div class="list-group">
                           <a href="{{ route('addproperty') }}" class="list-group-item active">Add Your Properties </a>
                           {{-- <a href="{{ route('addroom') }}" class="list-group-item">Add Rooms</a> --}}
-                          <a href="#" class="list-group-item">Booking Requests </a>
+                          <a href="{{route ('viewproperties')}}" class="list-group-item">Booking Requests </a>
                           <a href="{{route ('viewproperties')}}" class="list-group-item">View Properties </a>
-                          <a href="#" class="list-group-item">View Room </a>
-                          <a href="#" class="list-group-item">Booked Room </a>
+                          <!-- <a href="#" class="list-group-item">View Room </a>
+                          <a href="#" class="list-group-item">Booked Room </a> -->
                           
                         </div>
                 </div><!--/.sidebar-offcanvas-->
@@ -31,17 +31,17 @@
 
                        
                                  {{-- {{ Auth::user()->id }} --}}
-                                {{ Auth::user()->name }}
-                                {{ Auth::user()->role }}
+                                {{-- {{ Auth::user()->name }}
+                                {{ Auth::user()->role }} --}}
                                  
-                            
+                                
                        
                                     
                                 <div class="card">     
                                     <div class="card-header">{{ __('Add Property Form') }}</div>
                                         
                                      <div class="card-body">
-                                        <form method="POST" action="{{ route('propertyAdd') }}">
+                                        <form method="POST"   action="{{ route('propertyAdd') }}">
                                              @csrf
                                              <input id="user_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}">
                                              <input id="role" name="role" type="hidden" value="{{ Auth::user()->role }}">
@@ -52,8 +52,8 @@
                                                 <div class="col-md-6">
                                                     <select class="form-control" name="propertyType" id="propertyType" >
                                                             <option value="">Property Type</option>
-                                                            <option value="Hostal">Hostal</option>
-                                                            <option value="Hotal">Hotal</option>
+                                                            <option value="Hostal">Hostel</option>
+                                                            <option value="Hotal">Hotel</option>
                                                     </select>
                                                     @if($errors->has('propertyType'))
                                                         <span class="Please Enter the property Type Hostal/hotal">
@@ -186,6 +186,12 @@
                                                                 <option value="I-16,Islamabad">I-16, Islamabad</option>
                                                                 <option value="I-17,Islamabad">I-17, Islamabad</option>
                                                                 <option value="I-18,Islamabad">I-18, Islamabad</option>
+                                                                <option value = "khanapull">Khana Pull </option>
+                                                                <option value="margallatown">Margalla Town</option>
+                                                                <option value="tarmari">Tarmari</option>
+                                                                <option value="alipur">Ali-Pur</option>
+                                                                
+                                                                
                                                         </select>
                                                         @if($errors->has('sector'))
                                                             <span class="Please select the sector ">
@@ -194,12 +200,30 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                        
-                                                    
-                                                </div>
                                                 
+                                                  
                                                 <div class="form-group row">
+                                                    <div id="gmap">AIzaSyDCDJh4yzaNdOwSzmA1F3qtc_f47WchMgk</div>
+                                                  
+                                                   </div>
+                                                  
+                                                
+                                                     <div class="form-group row">
+                                                       
+                                                           <div class="col-md-6">
+                                                               <input id="lat" type="text" placeholder=" Latitude" class="form-control" name="lat" required>
+                                                           </div>
+                                                   
+                                                           <div class="col-md-6">
+                                                               <input id="lon" type="text" placeholder=" Longitude" class="form-control" name="lon" required>
+                                                           </div>
+                                                      
+                                                   </div>
+                                                       
+                                                      
+                                                    
+                                                
+                                                <!-- <div class="form-group row">
                                                     <label for="Latitude" class="col-md-4 col-form-label text-md-right">{{ __('Latitude') }}</label>
                         
                                                     <div class="col-md-6">
@@ -212,7 +236,7 @@
                                                     <div class="col-md-6">
                                                         <input id="Longitude" type="number" placeholder="Enter Longitude" class="form-control" name="Longitude" required>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="form-group row">
                                                     <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('city') }}</label>
                         
@@ -229,9 +253,22 @@
                                                         @endif
                                                     </div>
                                                 </div>
+                                                <div class="form-group row">
+                                                        <label for="phoneNo" class="col-md-4 col-form-label text-md-right">{{ __('Contact Number') }}</label>
+                            
+                                                        <div class="col-md-6">
+                                                            <input id="phoneNo" type="text" placeholder="example: 03xxxxxxxxx " class="form-control{{ $errors->has('phoneNo') ? ' is-invalid' : '' }}" name="phoneNo" value="{{ old('phoneNo') }}" required>
+                            
+                                                            @if ($errors->has('phoneNo'))
+                                                                <span class="invalid-feedback">
+                                                                    <strong>{{ $errors->first('phoneNo') }}</strong>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
 
                                             <div class="form-group row">
-                                                <div class="col-md-4" style="margin-left:260px;">
+                                                <div class="col-md-4 col-sm-12 col-xs-12 features"  >
                                                         
                                                      <label class="checkbox-inline">
                                                         <input name="internet" type="checkbox" value="1">Internet
@@ -252,16 +289,59 @@
                                                       <label class="checkbox-inline">
                                                         <input name="cctvCamear" type="checkbox" value="1">cctv Camear 
                                                       </label>
-                                                     
-                                                    {{-- @if($errors->has('city'))
-                                                        <span class="Please Enter the property Type Hostal/hotal">
-                                                            <strong>{{$errors->first('city')}}</strong>
-                                                        </span>
-                                                    @endif --}}
+
+
+                                                        <label class="checkbox-inline">
+                                                        <input name="AirConditioning" type="checkbox" value="1">Air Conditioning
+                                                      </label>
+                                                      <label class="checkbox-inline">
+                                                        <input name="IroningFacilities" type="checkbox" value="1">Ironing Facilities
+                                                      </label>
+                                                      <label class="checkbox-inline">
+                                                        <input name="PrivateBathroom" type="checkbox" value="1">Private Bathroom
+                                                      </label>
+                                                      <label class="checkbox-inline">
+                                                        <input name="Refrigerator" type="checkbox" value="1">Refrigerator
+                                                      </label>
+                                                      <label class="checkbox-inline">
+                                                        <input name="Telephone" type="checkbox" value="1">Telephone
+                                                      </label>
+                                                      <label class="checkbox-inline">
+                                                        <input name="AirportShuttle" type="checkbox" value="1">Airport Shuttle
+                                                      </label>
+                                                      <label class="checkbox-inline">
+                                                        <input name="Wardrobe" type="checkbox" value="1">Wardrobe
+                                                      </label>
+                                                      <label class="checkbox-inline">
+                                                        <input name="Towels" type="checkbox" value="1">Towels
+                                                      </label>
+                                                      <label class="checkbox-inline">
+                                                        <input name="Heating" type="checkbox" value="1">Heating
+                                                      </label>
+                                                      <label class="checkbox-inline">
+                                                        <input name="Restaurant" type="checkbox" value="1">Restaurant
+                                                      </label>
+                                                      <label class="checkbox-inline">
+                                                        <input name="Shower" type="checkbox" value="1">Shower
+                                                      </label>  
+ 
+                                                    
                                                 </div>
                                             </div>
                                         
+                                            <div class="form-group row">
+                                                    <label for="pic" class="col-md-4 col-form-label text-md-right">{{ __('Picture') }}</label>
                         
+                                                    <div class="col-md-6">
+                                                        
+                                                        <input type="file" id="pic" name="pic" accept="image/*">
+                                                        @if ($errors->has('pic'))
+                                                            <span class="invalid-feedback">
+                                                                <strong>{{ $errors->first('pic') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
                         
                                                
                                                 <br />

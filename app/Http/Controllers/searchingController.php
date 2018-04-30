@@ -41,6 +41,86 @@ class searchingController extends Controller
 
           return response()->json( $property, 201);
     }
+/**
+     * Show the property of the University
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function univerity($id)
+    {
+          // $property = DB::table('properties')->get();
+          if($id == "BAHRIA" || $id =="AIR")
+          {
+
+            $property ['sector'] = DB::table('properties')->where('sector', "F-8,Islamabad")
+             ->orwhere('sector', "E-11,Islamabad")
+            ->orwhere('sector', "F-7,Islamabad")
+            ->orwhere('sector', "F-6,Islamabad")->get();
+            
+            //$property ['sector1'] = DB::table('properties')->where('sector', "F-8,Islamabad" )->get();
+            // $property ['sector2'] = DB::table('properties')->where('sector', "F-10,Islamabad" )->get();
+            // $property ['sector3'] = DB::table('properties')->where('sector', "E-11,Islamabad" )->get();
+            // $property ['sector4'] = DB::table('properties')->where('sector', "F-7,Islamabad" )->get();
+            // $property ['sector5'] = DB::table('properties')->where('sector', "F-6,Islamabad" )->get();
+             return response()->json( $property, 201);
+          }
+
+          if($id == "NUST" || $id =="FAST" || $id =="ISLAMIC")
+          {
+            
+            $property ['sector'] = DB::table('properties')->where('sector', "H-11,Islamabad" )
+            ->orwhere('sector', "I-12,Islamabad")
+            ->orwhere('sector', "I-10,Islamabad")
+            ->orwhere('sector', "G-10,Islamabad")
+            ->orwhere('sector', "G-11,Islamabad")
+            ->get();
+
+            // $property ['sector2'] = DB::table('properties')->where('sector', "I-12,Islamabad" )->get();
+            // $property ['sector3'] = DB::table('properties')->where('sector', "I-10,Islamabad" )->get();
+            // $property ['sector4'] = DB::table('properties')->where('sector', "G-10,Islamabad" )->get();
+            // $property ['sector5'] = DB::table('properties')->where('sector', "G-11,Islamabad" )->get();
+            return response()->json( $property, 201);
+          }
+
+          if($id == "FEDRAL" || $id =="CASE")
+          {
+            
+            $property ['sector'] = DB::table('properties')->where('sector', "G-6,Islamabad" )
+            ->orwhere('sector', "G-7,Islamabad")
+            ->orwhere('sector', "F-6,Islamabad")
+            ->orwhere('sector', "F-7,Islamabad")
+            ->orwhere('sector', "G-5,Islamabad")
+            ->get();
+            // $property ['sector2'] = DB::table('properties')->where('sector', "G-7,Islamabad" )->get();
+            // $property ['sector3'] = DB::table('properties')->where('sector', "F-6,Islamabad" )->get();
+            // $property ['sector4'] = DB::table('properties')->where('sector', "F-7,Islamabad" )->get();
+            // $property ['sector5'] = DB::table('properties')->where('sector', "G-5,Islamabad" )->get();
+            return response()->json( $property, 201);
+          }
+          if($id == "COMSAT" || $id =="ABASYN")
+          {
+            
+            $property ['sector'] = DB::table('properties')->where('sector', "khanapull" )
+            ->orwhere('sector', "margallatown")
+            ->orwhere('sector', "tarmari")
+            ->orwhere('sector', "alipur")
+           
+            ->get();
+            // $property ['sector2'] = DB::table('properties')->where('sector', "margallatown" )->get();
+            // $property ['sector3'] = DB::table('properties')->where('sector', "tarmari" )->get();
+            // $property ['sector4'] = DB::table('properties')->where('sector', "alipur" )->get();
+  
+            return response()->json( $property, 201);
+          }
+
+
+
+          $property = DB::table('properties')->where('sector', $id)->get();
+          
+
+          return response()->json( $property, 201);
+    }
+    
     public function sectorall(Request $request)
     {
           // $property = DB::table('properties')->get();

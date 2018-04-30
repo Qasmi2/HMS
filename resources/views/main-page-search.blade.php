@@ -1,18 +1,22 @@
+
 @extends('layout.master')
 @include('flash')
 @section('content')
 
 <div class="card-body">
-	@if (session('status'))
-		<div class="alert alert-info">
-			{{ session('status') }}
-		
-		</div>
-	@endif
-	  
- </div>
+		@if (session('status'))
+			<div class="alert alert-info">
+				{{ session('status') }}
+			
+			</div>
+		@endif
+		  
+</div>
 
 		<!-- banner -->
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(500,750); } </script>
+
 	<div id="home" class="w3ls-banner">
 		<!-- banner-text -->
 		<div class="slider">
@@ -53,7 +57,7 @@
 								<div class="agileits-banner-info">
 								<h4>HOSTELS AND HOTELS GUIDE</h4>
 								<h3>want Study Room</h3>
-										<p>Find Hostels today today</p>
+										<p>Get Booking today</p>
 									<div class="agileits_w3layouts_more menu__item">
 											<a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">Learn More</a>
 										</div>
@@ -98,15 +102,16 @@
 </div>
 
 <div class="col-md-9 book-form">
-<h2><center style="color:white;margin-top:50px;">SEARCHING </center></h2>		
+<h2><center style="color:white;margin-top:50px;">SEARCHING</center></h2>		
 </div>
 			<div class="clearfix"> </div>
 </div>
 <!-- Searching -->
-<div id="about">
+<div class="about-wthree" id="about">
 	<div class="container">	
-
-<div class="card">
+		<div id="about">
+			
+				<div class="card">
                            <!-- <div class="card-header text-center bg-primary"><b>Searching Hostal / Resturent </b></div> -->
                           
                            <br /><br />
@@ -226,7 +231,7 @@
 </div>
 </div>
 </div>
-                        </div>
+                </div>
 <!-- End searching -->
 				   
 
@@ -241,13 +246,13 @@
                            
                            <form method="POST" action="{{ route('searchuni') }}">
                                  @csrf
-								 
+                                
                                 <div class="form-group row">
                                             <!-- <label for="sector" class="col-md-4 col-form-label text-md-right">{{ __('Search') }}</label> -->
                                                 <div>
                                                     <select class="form-control" name="university" id="university"style="background-color:#0268a6;color:white; >
-														<option value="">Select University</option>
-														<option value="">Select University</option>
+													<option value="">Select University</option>
+													<option value="">Select University</option>
                                                         <option value="BAHRIA">BAHRIA University</option>
                                                         <option value="AIR">AIR University</option>
                                                         <option value="NUST">NUST University</option>
@@ -257,9 +262,7 @@
                                                         <option value="CASE">CASE University</option>
                                                         <option value="ABASYN">ABASYN University</option>
                                                         <option value="COMSAT">COMSAT University</option>
-														
-                                                        
-                                                        
+													 
                                                     </select>
                                                     @if($errors->has('university'))
                                                         <span class="Please Select a sector">
@@ -286,11 +289,107 @@
 </div>
   </div>
 </div>
-	</div>
+</div>
 <!-- End searching -->
 <!-- End Searching Univeristy -->
 
+
+<div class="container" style="background-color: white;  margin-top: 2em; ">
+    <section class="">
+                <div style="margin-bottom: 20px">
+					<h5 style="text-align: center;margin-top: 1em;">REARCH RESULT</h5>
+                </div>
+               
+               
+				
+				<div class="container mobile-view" > 
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marketingSourceDiv" style="padding: 0px 0px 0px 0px;" >
+							<div id = "MSTitleDiv"  class="col-lg-3 col-md-3 ">
+									
+								<center><h4 class="title2">Picture </h4></center>
+									
+							</div>
+							
+							<div id = "MSTitleDiv"  class="col-lg-2 col-md-2 ">
+									
+								<center><h4 class="title2">Name </h4></center>
+							
+							</div>
+							
+							
+							<div id = "MSTitleDiv"  class="col-lg-2 col-md-2 ">
+							 
+								<center><h4 class="title2">NO of Rooms</h4></center>
+
+							</div>      
+
+							<div id = "MSTitleDiv"  class="col-lg-2 col-md-2 ">
+							 
+								<center><h4 class="title2">Sectors</h4></center>
+
+							</div>      
+
+							<div id = "MSTitleDiv"  class="col-lg-3 col-md-3 ">
+							 
+									<center><h4 class="title2">VIEW Detail</h4></center>
 	
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<hr style= "margin : 0px">	
+				<br />
+
+               
+			   @for ($i = 0; $i < sizeof($result); $i++)
+			   <div class="container" > 
+				<div class="row">  
+
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marketingSourceDiv" style="padding: 0px 0px 0px 0px;" >
+
+						<div id = "MSTitleDiv"  class="col-lg-3 col-md-3  col-sm-12 col-xs-12">                          
+							<img id ="msimage"  src="https://www.w3schools.com/css/img_fjords.jpg" height= "100%" width="100%" >
+						</div>
+						
+						<div id = "MSTitleDiv"  class="col-lg-2 col-md-2  col-sm-12 col-xs-12">                         
+
+                                    <center><h4 class="title2">{{$result[$i]['propertyName']}}</h4></center>
+						</div>
+					   
+						<div id = "MSTitleDiv"  class="col-lg-2 col-md-2  col-sm-12 col-xs-12">
+							
+							<center><h4 class="title2">{{$result[$i]['noOfRoom']}}</h4></center>
+						</div>      
+
+						<div id = "MSTitleDiv"  class="col-lg-2 col-md-2  col-sm-12 col-xs-12">
+							
+							<center><h4 class="title2">{{$result[$i]['sector']}}</h4></center>
+						</div>      
+
+							
+						<div id = "MSTitleDiv"  class="col-lg-3 col-md-3  col-sm-12 col-xs-12" style="padding-left:90px;">
+							
+							<a href="{{ url('viewproperty/'.$result[$i]['id']) }}" class="btn btn-primary" >View Detail</a>
+						</div>
+					</div>
+                    
+                       
+							</div>
+						</div>
+                    	<hr style= "margin : 0px">
+				@endfor
+			
+		 </section>
+		
+				 
+		 </div> 
+		</div>
+
+
+
+
 <!-- Gallery -->
 <section class="portfolio-w3ls" id="gallery">
 		 <h3 class="title-w3-agileits title-black-wthree">Our Gallery</h3>
@@ -393,10 +492,8 @@
 				<div class="clearfix"> </div>
 </section>
 <!-- //gallery -->
-
- 
-
 	
+ 
 <!-- contact -->
 <section class="contact-w3ls" id="contact">
 	<div class="container">

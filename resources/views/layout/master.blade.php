@@ -8,21 +8,24 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ config('app.name', 'Laravel') }}</title>
+<title>{{ config('app.name', 'HMS') }}</title>
 
 <meta name="keywords" content="" />
 <!-- javaScript and Css files -->
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
+<link href="{{URL::asset('css/mobileview.css')}}" rel="stylesheet"> 
 <link href="{{URL::asset('cssc/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
 <link href="{{URL::asset('cssc/font-awesome.css')}}" rel="stylesheet"> 
+<link href="{{URL::asset('css/paper-dashboard.css')}}" rel="stylesheet"> 
 <link rel="stylesheet" href="{{URL::asset('cssc/chocolat.css')}}" type="text/css" media="screen">
 <link href="{{URL::asset('cssc/easy-responsive-tabs.css')}}" rel='stylesheet' type='text/css'/>
 <link rel="stylesheet" href="{{URL::asset('cssc/flexslider.css')}}" type="text/css" media="screen" property="" />
 <link rel="stylesheet" href="{{URL::asset('cssc/jquery-ui.css')}}" />
 <link href="{{URL::asset('cssc/style.css')}}" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="{{URL::asset('jsj/modernizr-2.6.2.min.js')}}"></script>
+
 <!--fonts-->
 <link href="{{URL::asset('//fonts.googleapis.com/css?family=Oswald:300,400,700')}}" rel="stylesheet">
 <link href="{{URL::asset('//fonts.googleapis.com/css?family=Federo')}}" rel="stylesheet">
@@ -43,9 +46,9 @@
 			</div>
 			<div class="contact-bnr-w3-agile">
 				<ul>
-					<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">INFO@EXAMPLE.COM</a></li>
-					<li><i class="fa fa-phone" aria-hidden="true"></i>+92 333 2222333</li>	
-					<li class="s-bar">
+					<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">HMS@gmail.COM</a></li>
+					<li><i class="fa fa-phone" aria-hidden="true"></i>+92 334 0584701</li>	
+					{{-- <li class="s-bar">
 						<div class="search">
 							<input class="search_box" type="checkbox" id="search_box">
 							<label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
@@ -56,7 +59,7 @@
 								</form>
 							</div>
 						</div>
-					</li>
+					</li> --}}
 				</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -71,17 +74,17 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<h1><a class="navbar-brand" href="http://hms.com">Room Booking <span>Portal</span><p class="logo_w3l_agile_caption">As You Like </p></a></h1>
+					<h1><a class="navbar-brand" href="http://hms.com/">Room Booking Portal<p class="logo_w3l_agile_caption">As You Like </p></a></h1>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<nav class="menu menu--iris">
 						<ul class="nav navbar-nav menu__list">
-							<li class="menu__item menu__item--current"><a href="http://hms.com" class="menu__link">Home</a></li>
-							<li class="menu__item"><a href="#about" class="menu__link scroll">About</a></li>
-							<li class="menu__item"><a href="#team" class="menu__link scroll">Team</a></li>
+							<li class="menu__item menu__item--current"><a href="http://hms.com/" class="menu__link">Home</a></li>
+							<li class="menu__item"><a href="#about" class="menu__link scroll">Search</a></li>
+							{{-- <li class="menu__item"><a href="#team" class="menu__link scroll">Team</a></li> --}}
 							<li class="menu__item"><a href="#gallery" class="menu__link scroll">Gallery</a></li>
-							<li class="menu__item"><a href="#rooms" class="menu__link scroll">Rooms</a></li>
+							{{-- <li class="menu__item"><a href="#rooms" class="menu__link scroll">Rooms</a></li> --}}
 							<li class="menu__item"><a href="#contact" class="menu__link scroll">Contact Us</a></li>
 						@guest    
                             <li><a class="nav-link" href="{{ route('reg') }}">{{ __('Reister') }}</a></li>

@@ -38,7 +38,7 @@
                                 <div class="row">
                                        
                                             <div class="col-lg-12 col-md-12 ">
-                                                   <center>Pictures</center>
+                                           <center> <img id ="msimage"  src="data:BLOb - 5B/png;base64,{{$result['pic']}}" height= "100%" width="100%" ></center>
                                             </div>
                                             <br><br>
 
@@ -78,7 +78,7 @@
                                                     {{$result['RoomCleaning']}}
                                                  </div> 
                                                             {{-- href="{{ url('/problems/' . $problem->id . '/edit') }}" --}}
-                                                        {{-- <a href="{{ url('*'.$result[$i]['id']) }}" class="btn btn-primary" >View Detail</a> --}}
+                                                        {{-- <a href="{{ url('viewrooms'.$result[$i]['id']) }}" class="btn btn-primary" >View Rooms DetailDetail</a> --}}
                                                         {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#test">View</button> --}}
 
                                                 <br><br><br>
