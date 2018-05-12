@@ -59,7 +59,7 @@ class FrontEndPropertyController extends Controller
             $curl = curl_init();
            
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "http://hms.com/api/yourProperties",
+                CURLOPT_URL => "http://ayanshani.com/api/yourProperties",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -175,7 +175,7 @@ class FrontEndPropertyController extends Controller
             $curl = curl_init();
            
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "http://hms.com/api/createProperty",
+                CURLOPT_URL => "http://ayanshani.com/api/createProperty",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -248,7 +248,7 @@ class FrontEndPropertyController extends Controller
             $curl = curl_init();
          
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "http://hms.com/api/createRoom",
+                CURLOPT_URL => "http://ayanshani.com/api/createRoom",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -330,7 +330,7 @@ class FrontEndPropertyController extends Controller
         var_dump($id);
         exit();
         $curl = curl_init();
-        $base_url = 'http://hms.com/api/showpropertySector';
+        $base_url = 'http://ayanshani.com/api/showpropertySector';
         $url = $base_url . '/' . $id;
         
         curl_setopt_array($curl, array(
@@ -397,7 +397,7 @@ class FrontEndPropertyController extends Controller
         $id = $request->input('sector');
         
         $curl = curl_init();
-        $base_url = 'http://hms.com/api/showpropertySector';
+        $base_url = 'http://ayanshani.com/api/showpropertySector';
         $url = $base_url . '/' . $id;
         
         curl_setopt_array($curl, array(
@@ -462,7 +462,7 @@ class FrontEndPropertyController extends Controller
         $id = $request->input('university');
         
         $curl = curl_init();
-        $base_url = 'http://hms.com/api/showpropertyUniversity';
+        $base_url = 'http://ayanshani.com/api/showpropertyUniversity';
         $url = $base_url . '/' . $id;
         
         curl_setopt_array($curl, array(
@@ -554,7 +554,7 @@ class FrontEndPropertyController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-          CURLOPT_URL => "http://hms.com/api/showproperty",
+          CURLOPT_URL => "http://ayanshani.com/api/showproperty",
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => "",
           CURLOPT_MAXREDIRS => 10,
@@ -585,7 +585,7 @@ class FrontEndPropertyController extends Controller
 
         
         $curl = curl_init();
-        $base_url = 'http://hms.com/api/getProperty';
+        $base_url = 'http://ayanshani.com/api/getProperty';
         $url = $base_url . '/' . $id;
         
         curl_setopt_array($curl, array(
@@ -629,7 +629,7 @@ class FrontEndPropertyController extends Controller
        
         
         $curl = curl_init();
-        $base_url = 'http://hms.com/api/request';
+        $base_url = 'http://ayanshani.com/api/request';
         $url = $base_url . '/' . $id;
         // var_dump($id);
         // exit();
@@ -682,7 +682,7 @@ class FrontEndPropertyController extends Controller
         
         
         $curl = curl_init();
-        $base_url = 'http://hms.com/api/getRooms';
+        $base_url = 'http://ayanshani.com/api/getRooms';
         $url = $base_url . '/' . $id;
        
         curl_setopt_array($curl, array(
@@ -721,7 +721,7 @@ class FrontEndPropertyController extends Controller
     {
         
         $curl = curl_init();
-        $base_url = 'http://hms.com/api/booked';
+        $base_url = 'http://ayanshani.com/api/booked';
         $url = $base_url . '/' . $id;
        
         curl_setopt_array($curl, array(
@@ -829,7 +829,7 @@ class FrontEndPropertyController extends Controller
             $curl = curl_init();
            
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "http://hms.com/api/booking",
+                CURLOPT_URL => "http://ayanshani.com/api/booking",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -904,7 +904,7 @@ class FrontEndPropertyController extends Controller
         $curl = curl_init();
            
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://hms.com/api/status",
+            CURLOPT_URL => "http://ayanshani.com/api/status",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -937,7 +937,9 @@ class FrontEndPropertyController extends Controller
        
         } else {
             
-            return redirect()->back()->with('success',"Please Contact with the HOSTEL/HOTEL MANAGER for more detail aobut your Booking");
+            //  var_dump($result);
+            //  exit();
+            return view('Actionuser.bookingstatus')->with('result',$result);
             // return view('adminAction.returnproperty')->with('result',$result);
         }
 
@@ -970,7 +972,7 @@ class FrontEndPropertyController extends Controller
     //         $curl = curl_init();
            
     //         curl_setopt_array($curl, array(
-    //             CURLOPT_URL => "http://hms.com/api/booking",
+    //             CURLOPT_URL => "http://ayanshani.com/api/booking",
     //             CURLOPT_RETURNTRANSFER => true,
     //             CURLOPT_ENCODING => "",
     //             CURLOPT_MAXREDIRS => 10,

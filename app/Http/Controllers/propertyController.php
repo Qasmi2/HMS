@@ -100,6 +100,7 @@ class propertyController extends Controller
                 'streetAddress' => 'required',
                 'sector' => 'required',
                 'city' =>'required',
+                'pic'=>'required',
                
             ]);
     
@@ -108,19 +109,31 @@ class propertyController extends Controller
             }
 
          
-            
+        //      // Handle File Upload
+        //      if($request->hasFile('pic')){
+        //     // Get filename with the extension
+        //     $filenameWithExt = $request->file('pic')->getClientOriginalName();
+        //     // Get just filename
+        //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        //     // Get just ext
+        //     $extension = $request->file('pic')->getClientOriginalExtension();
+        //     // Filename to store
+        //     $fileNameToStore= $filename.'_'.time().'.'.$extension;
+        //     // Upload Image
+        //     $path = $request->file('pic')->storeAs('public/cover_images', $fileNameToStore);
+        // }
 
-                
-    
-                 
-    
-      
+          
         
             $hostal = $request->isMethod('put') ? property::findOrFail 
             ($request->property_id) : new property;
 
 
-            
+            // if($request->hasFile('pic')){
+               
+            //     $hostal->pic = $fileNameToStore;
+            // }
+
             $hostal->pic = $request->input('pic');
             $hostal->id = $request->input('property_id');
             $hostal->propertyType = $request->input('propertyType');

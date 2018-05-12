@@ -8,7 +8,7 @@
                                     
                             </div>
                         @endif
-<a class="btn btn-primary" href="http://hms.com/">
+<a class="btn btn-primary" href="http://ayanshani.com/">
     {{ __('Home Page') }} 
 </a>
 

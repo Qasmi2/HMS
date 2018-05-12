@@ -41,7 +41,7 @@
                                     <div class="card-header">{{ __('Add Property Form') }}</div>
                                         
                                      <div class="card-body">
-                                        <form method="POST"   action="{{ route('propertyAdd') }}">
+                                        <form  action="{{ route('propertyAdd') }}" method="POST"  >
                                              @csrf
                                              <input id="user_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}">
                                              <input id="role" name="role" type="hidden" value="{{ Auth::user()->role }}">

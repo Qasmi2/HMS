@@ -246,10 +246,12 @@ class bookingController extends Controller
            
             if($status == "confirm")
             {
-                return response()->json(['success' =>'Your Room is Booked by Hostal manager'],201);
+                $result = "Your Room is Booked by Hostal manager";
+                return response()->json($result,201);
             }
             else{
-                return response()->json(['success'=>'Still Pending Request  '], 201);  
+                $result = "Still Pending Request";
+                return response()->json($result, 201);  
             }
         } else{
             return response()->json(['success'=>'unauthorized User  '], 401);  

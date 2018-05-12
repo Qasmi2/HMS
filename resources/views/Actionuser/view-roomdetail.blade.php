@@ -9,7 +9,7 @@
 
             <div class="col-md-3" id="sidebar">
                     <div class="list-group">
-                    <a href="http://hms.com/user" class="list-group-item active">HOME</a>
+                    <a href="http://ayanshani.com/user" class="list-group-item active">HOME</a>
                       {{-- <a href="#" class="list-group-item">Booking status </a> --}}
                       
                       
@@ -33,7 +33,7 @@
                             <div class="alert alert-info">
                             
                                  To Room Booking you have to Register/login 
-                                 <a href="http://hms.com/reg">Register</a>
+                                 <a href="http://ayanshani.com/reg">Register</a>
                             </div>
                           @endif
                         <div class="card" >

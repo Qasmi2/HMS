@@ -43,7 +43,7 @@ class CreatePropertiesTable extends Migration
             $table->tinyInteger('Heating')->nullable();
             $table->tinyInteger('Restaurant')->nullable();
             $table->tinyInteger('Shower')->nullable();
-            $table->binary('pic');
+            $table->string('pic'); 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

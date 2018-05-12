@@ -54,7 +54,7 @@ class FrontEndController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://hms.com/api/register",
+            CURLOPT_URL => "http://ayanshani.com/api/register",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -142,7 +142,7 @@ class FrontEndController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://hms.com/api/login",
+            CURLOPT_URL => "http://ayanshani.com/api/login",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,

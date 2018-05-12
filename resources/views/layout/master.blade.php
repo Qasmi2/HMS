@@ -74,13 +74,13 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<h1><a class="navbar-brand" href="http://hms.com/">Room Booking Portal<p class="logo_w3l_agile_caption">As You Like </p></a></h1>
+					<h1><a class="navbar-brand" href="http://ayanshani.com/">Room Booking Portal<p class="logo_w3l_agile_caption">As You Like </p></a></h1>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<nav class="menu menu--iris">
 						<ul class="nav navbar-nav menu__list">
-							<li class="menu__item menu__item--current"><a href="http://hms.com/" class="menu__link">Home</a></li>
+							<li class="menu__item menu__item--current"><a href="http://ayanshani.com/" class="menu__link">Home</a></li>
 							<li class="menu__item"><a href="#about" class="menu__link scroll">Search</a></li>
 							{{-- <li class="menu__item"><a href="#team" class="menu__link scroll">Team</a></li> --}}
 							<li class="menu__item"><a href="#gallery" class="menu__link scroll">Gallery</a></li>

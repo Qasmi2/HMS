@@ -350,7 +350,8 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marketingSourceDiv" style="padding: 0px 0px 0px 0px;" >
 
 						<div id = "MSTitleDiv"  class="col-lg-3 col-md-3  col-sm-12 col-xs-12">                          
-								<img id ="msimage"  src="data:pic/jpeg;base64,'{{base64_encode($result[$i]['pic'])}}''" height= "100%" width="100%" >
+								<img id ="msimage" src="/storage/cover_images/{{$result[$i]['pic']}}" height= "100%" width="100%">
+							
 						</div>
 						
 						<div id = "MSTitleDiv"  class="col-lg-2 col-md-2  col-sm-12 col-xs-12">                         

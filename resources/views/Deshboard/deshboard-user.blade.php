@@ -8,7 +8,7 @@
 
             <div class="col-md-3" id="sidebar">
                     <div class="list-group">
-                      <a href="http://hms.com/" class="list-group-item active">HOME</a>
+                      <a href="http://ayanshani.com/" class="list-group-item active">HOME</a>
                       {{-- <a href="#" class="list-group-item">Profile view</a>
                       <a href="#" class="list-group-item">Booking Request</a> --}}
                       
